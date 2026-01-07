@@ -918,6 +918,10 @@ body {
     margin-bottom: 20px;
 }
 
+.footer-column-offset {
+    padding-left: 20px;
+}
+
 .footer-heading-orange {
     color: #EC6C25;
 }
@@ -925,7 +929,7 @@ body {
 .footer-text {
     color: white;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 300;
     line-height: 1.8;
 }
 
