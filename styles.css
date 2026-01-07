@@ -21,7 +21,7 @@ body {
     width: 100%;
     height: 80px;
     position: fixed;
-    top: 44px;
+    top: 24px !important;
     left: 0;
     z-index: 1000;
     display: flex;
@@ -33,7 +33,7 @@ body {
     width: 100%;
     max-width: 1470px;
     height: 80px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0, 0, 0, 0.70);
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -386,91 +386,27 @@ body {
     background-size: cover;
     background-position: center;
     cursor: pointer;
-    transition: transform 0.3s ease;
     flex-shrink: 0;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
 }
 
 /* Card 1 - Lightning bolt icon */
 .feature-card-1 {
-    background: linear-gradient(135deg, #7a7a7a 0%, #5a5a5a 100%);
-}
-
-.feature-card-1::before {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 60px;
-    width: 120px;
-    height: 180px;
-    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
-    clip-path: polygon(45% 0%, 55% 0%, 100% 45%, 60% 45%, 100% 100%, 40% 60%, 0% 100%, 45% 45%, 0% 45%);
+    background: #6a6a6a;
 }
 
 /* Card 2 - Hand with phone */
 .feature-card-2 {
-    background: linear-gradient(135deg, #6a6a6a 0%, #4a4a4a 100%);
-}
-
-.feature-card-2::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: -30px;
-    width: 200px;
-    height: 250px;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
-    transform: rotate(-25deg);
+    background: #6a6a6a;
 }
 
 /* Card 3 - Circuit board */
 .feature-card-3 {
-    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
-}
-
-.feature-card-3::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 40%;
-    background-image: 
-        repeating-linear-gradient(0deg, rgba(100,100,100,0.1) 0px, rgba(100,100,100,0.1) 1px, transparent 1px, transparent 8px),
-        repeating-linear-gradient(90deg, rgba(100,100,100,0.1) 0px, rgba(100,100,100,0.1) 1px, transparent 1px, transparent 8px),
-        radial-gradient(circle at 30% 25%, rgba(150,150,150,0.2) 0%, transparent 3%),
-        radial-gradient(circle at 70% 30%, rgba(150,150,150,0.2) 0%, transparent 2%),
-        radial-gradient(circle at 50% 50%, rgba(150,150,150,0.2) 0%, transparent 2%);
+    background: #6a6a6a;
 }
 
 /* Card 4 - Curved lines */
 .feature-card-4 {
-    background: linear-gradient(135deg, #6a6a6a 0%, #5a5a5a 100%);
-}
-
-.feature-card-4::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: -80px;
-    width: 250px;
-    height: 250px;
-    border: 3px solid rgba(0,0,0,0.4);
-    border-radius: 50%;
-}
-
-.feature-card-4::after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    right: -70px;
-    width: 230px;
-    height: 230px;
-    border: 3px solid rgba(0,0,0,0.4);
-    border-radius: 50%;
+    background: #6a6a6a;
 }
 
 .feature-content {
@@ -479,7 +415,7 @@ body {
     left: 0;
     right: 0;
     padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.90) 50%, rgba(0,0,0,0.3) 90%, transparent 100%);
+    background: transparent;
     z-index: 2;
     min-height: 140px;
     display: flex;
