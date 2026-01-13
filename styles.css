@@ -241,8 +241,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black;
+    background: rgba(0, 0, 0, 0.7);
     border: 1px solid white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: width 0.3s ease;
     will-change: width;
     backface-visibility: hidden;
@@ -260,7 +262,7 @@ body {
 }
 
 .btn-primary:hover {
-    width: 190px;
+    width: 215px;
 }
 
 .btn-primary:hover .arrow-icon {
@@ -633,12 +635,27 @@ body {
     font-weight: 400;
     cursor: pointer;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
 }
 
-.btn-install:hover {
-    background: white;
-    color: black;
-    transform: translateY(-2px);
+.btn-install .arrow-icon {
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+    transition: width 0.3s ease, opacity 0.3s ease, margin-left 0.3s ease;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.btn-install:hover .arrow-icon {
+    width: 24px;
+    opacity: 1;
+    margin-left: 12px;
 }
 
 /* AI Section */
@@ -907,12 +924,12 @@ body {
 
 /* CTA Section */
 .cta-section {
-    height: 900px;
+    height: 800px;
     position: relative;
     display: flex;
     align-items: center;
-    padding: 200px 0 0 425px;
-    overflow: visible;
+    padding: 80px 0 0 425px;
+    overflow: hidden;
 }
 
 .cta-background-image {
@@ -924,6 +941,17 @@ body {
     object-fit: cover;
     object-position: center;
     z-index: 0;
+    transform: scale(1.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: scale(1.1) translateY(0);
+    }
+    50% {
+        transform: scale(1.1) translateY(-20px);
+    }
 }
 
 .cta-overlay-top {
@@ -931,7 +959,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 249px;
+    height: 300px;
     background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0) 100%);
     z-index: 1;
 }
@@ -941,7 +969,7 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 249px;
+    height: 350px;
     background: linear-gradient(360deg, black 0%, rgba(0, 0, 0, 0) 100%);
     z-index: 1;
 }
@@ -952,6 +980,7 @@ body {
     display: flex;
     align-items: center;
     gap: 40px;
+    transform: translateY(200px);
 }
 
 .cta-title {
