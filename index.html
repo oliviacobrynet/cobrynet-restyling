@@ -130,22 +130,60 @@
             <h2 class="ai-title"><span class="ai-title-gradient">Un consulente <span class="ai-title-orange">AI dedicato</span></span><br/><span class="ai-title-light">per ogni servizio</span></h2>
             <p class="ai-subtitle">Ti accompagneranno durante le esperienze di marketing, strategia e report</p>
             
-            <div class="donatello-card">
-                <div class="donatello-header">Ciao, sono Donatello</div>
-                <div class="donatello-content">
-                    <button class="carousel-btn carousel-prev">‹</button>
-                    <div class="donatello-text">
-                        <h3 class="donatello-title">Donatello è il tuo consulente marketing e strategy</h3>
-                        <p class="donatello-description">Ti aiuterà a creare la tua strategia, consentendoti di riguardare quella esistente e di crearne altre</p>
-                        <div class="carousel-dots">
-                            <span class="dot active"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
+            <button class="carousel-btn carousel-prev">
+                <img src="SVG/freccia.svg" alt="Previous" />
+            </button>
+            
+            <div class="carousel-container">
+                <div class="donatello-card active">
+                    <div class="donatello-header">Ciao, sono Donatello</div>
+                    <div class="donatello-content">
+                        <div class="donatello-text">
+                            <h3 class="donatello-title">Donatello è il tuo consulente marketing e strategy</h3>
+                            <p class="donatello-description">Ti aiuterà a creare la tua strategia, consentendoti di riguardare quella esistente e di crearne altre</p>
+                            <div class="carousel-dots">
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-btn carousel-next">›</button>
+                </div>
+                
+                <div class="donatello-card">
+                    <div class="donatello-header">Ciao, sono Leonardo</div>
+                    <div class="donatello-content">
+                        <div class="donatello-text">
+                            <h3 class="donatello-title">Leonardo è il tuo analista di dati per i report</h3>
+                            <p class="donatello-description">Analizzerà le tue performance e potrai iniziarci una conversazione</p>
+                            <div class="carousel-dots">
+                                <span class="dot"></span>
+                                <span class="dot active"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="donatello-card">
+                    <div class="donatello-header">Ciao, sono Lidia</div>
+                    <div class="donatello-content">
+                        <div class="donatello-text">
+                            <h3 class="donatello-title">Lidia è la chat assistenza AI di supporto</h3>
+                            <p class="donatello-description">É sempre disponibile per rispondere a qualsiasi tua domanda e per aiutarti</p>
+                            <div class="carousel-dots">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot active"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
+            <button class="carousel-btn carousel-next">
+                <img src="SVG/freccia.svg" alt="Next" />
+            </button>
 
             <div class="ai-icon">
                 <img src="SVG/loading.svg" alt="Loading" />
@@ -328,5 +366,6 @@
                             // do not mutate header transform. Header is fixed via CSS.
             })();
         </script>
+        <script src="script.js"></script>
 </body>
 </html>
