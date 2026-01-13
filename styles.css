@@ -171,7 +171,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://placehold.co/1732x936');
+    background: rgba(0, 0, 0, 0.3);
     background-size: cover;
     background-position: center;
     opacity: 0.4;
@@ -460,6 +460,28 @@ body {
     filter: blur(120px);
     z-index: 1;
     pointer-events: none;
+}
+
+.loading-icon {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: rotate 3s linear infinite;
+    opacity: 1;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
 }
 
 .marketplace-blur-bg {
@@ -760,14 +782,29 @@ body {
 }
 
 .ai-icon {
-    width: 164px;
-    height: 164px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto 40px;
-    background: radial-gradient(circle, rgba(236, 108, 37, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(circle, rgba(236, 108, 37, 0.4) 0%, rgba(236, 108, 37, 0.2) 40%, rgba(0, 0, 0, 0) 70%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.ai-icon img {
+    width: 80px;
+    height: 80px;
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .ai-coming-soon {
@@ -782,8 +819,8 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 200px 275px 0;
-    overflow: hidden;
+    padding: 200px 0 0 425px;
+    overflow: visible;
 }
 
 .cta-background-image {
@@ -919,7 +956,7 @@ body {
 .social-icon {
     width: 31px;
     height: 31px;
-    background: white;
+    background: transparent;
     color: black;
     display: flex;
     align-items: center;
@@ -930,10 +967,15 @@ body {
     transition: all 0.3s;
 }
 
-.social-icon:hover {
-    background: #EC6C25;
-    color: white;
-    transform: translateY(-3px);
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.3s;
+}
+
+.social-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(89%) saturate(1500%) hue-rotate(0deg) brightness(95%) contrast(90%);
 }
 
 .footer-divider {
@@ -963,6 +1005,13 @@ body {
 
 .footer-column-offset {
     padding-left: 0;
+}
+
+.footer-column-privacy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 40px;
 }
 
 .footer-heading-orange {
@@ -1000,10 +1049,13 @@ body {
     text-align: left;
     transition: transform 0.3s ease;
     transform-origin: left center;
+    width: fit-content;
 }
 
 .footer-link-orange:hover {
-    transform: scale(1.05);
+    font-weight: 600;
+    color: #EC6C25;
+    opacity: 1;
 }
 
 .footer-privacy {
