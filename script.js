@@ -127,4 +127,79 @@ document.addEventListener('DOMContentLoaded', function() {
 
         observer.observe(aiSection);
     }
+
+    // CTA Drag to Navigate
+    const ctaButton = document.querySelector('.cta-button');
+    const ctaCircle = document.querySelector('.cta-circle');
+    const ctaGradient = document.querySelector('.cta-gradient');
+    
+    if (ctaButton && ctaCircle) {
+        let isDragging = false;
+        let startX = 0;
+        let offsetX = 0;
+        let currentX = 0;
+        let maxDistance = 0;
+        
+        ctaCircle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            const rect = ctaCircle.getBoundingClientRect();
+            // Salva la posizione iniziale del cerchio e l'offset del mouse rispetto ad esso
+            startX = rect.left;
+            offsetX = e.clientX - rect.left;
+            maxDistance = window.innerWidth - startX - rect.width;
+            ctaButton.style.cursor = 'grabbing';
+            ctaCircle.style.transition = 'none';
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            // Il cerchio segue il mouse mantenendo l'offset iniziale
+            currentX = e.clientX - offsetX - startX;
+            if (currentX < 0) currentX = 0;
+            if (currentX > maxDistance) currentX = maxDistance;
+            
+            // Muove solo il cerchio - il gradiente è dentro e si muove insieme automaticamente
+            ctaCircle.style.transform = `translateX(${currentX}px)`;
+            
+            if (maxDistance > 0) {
+                ctaGradient.style.opacity = 0.8 + (currentX / maxDistance) * 0.2;
+            }
+        });
+        
+        document.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            ctaButton.style.cursor = 'pointer';
+            
+            if (currentX >= maxDistance * 0.7) {
+                // Animazione finale e redirect - scorre fino al bordo e va subito al link
+                ctaCircle.style.transition = 'transform 0.3s ease';
+                ctaCircle.style.transform = `translateX(${maxDistance}px)`;
+                
+                setTimeout(() => {
+                    window.open('https://www.brynetapp.com/', '_blank');
+                    // Reset
+                    ctaCircle.style.transition = 'none';
+                    ctaCircle.style.transform = 'translateX(0)';
+                    ctaGradient.style.opacity = '0.8';
+                    setTimeout(() => {
+                        ctaCircle.style.transition = '';
+                    }, 50);
+                }, 300);
+            } else {
+                // Torna indietro
+                ctaCircle.style.transition = 'transform 0.3s ease';
+                ctaCircle.style.transform = 'translateX(0)';
+                ctaGradient.style.opacity = '0.8';
+                setTimeout(() => {
+                    ctaCircle.style.transition = '';
+                }, 300);
+            }
+            
+            currentX = 0;
+        });
+    }
 });
