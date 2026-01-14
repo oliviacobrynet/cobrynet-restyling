@@ -1,18 +1,70 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
+    const headerLogo = document.querySelector('.logo img');
     let ticking = false;
+    
+    // Loading icon scroll-based rotation
+    const loadingIcon = document.querySelector('.ai-icon img');
+    const comingSoonText = document.querySelector('.ai-coming-soon');
+    let lastScrollY = window.pageYOffset;
+    let scrollSpeed = 0;
+    let rotation = 0;
+    let baseRotation = 0;
+    
+    // Base slow rotation animation
+    function animateBaseRotation() {
+        baseRotation += 0.4; // Slow base rotation speed
+        if (loadingIcon) {
+            loadingIcon.style.transform = `rotate(${baseRotation + rotation}deg)`;
+        }
+        requestAnimationFrame(animateBaseRotation);
+    }
+    animateBaseRotation();
+    
+    // Intersection Observer for coming soon text
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    if (comingSoonText) {
+        observer.observe(comingSoonText);
+    }
     
     window.addEventListener('scroll', function() {
         if (!ticking) {
             window.requestAnimationFrame(function() {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
+                // Calculate scroll speed
+                scrollSpeed = Math.abs(scrollTop - lastScrollY);
+                lastScrollY = scrollTop;
+                
+                // Accumulate rotation based on scroll speed
+                if (loadingIcon) {
+                    rotation += scrollSpeed * 0.5; // Adjust multiplier for rotation speed
+                }
+                
                 if (scrollTop > 100) {
-                    // Scrolling DOWN (oltre 100px) - stringi l'header
+                    // Scrolling DOWN (oltre 100px) - stringi l'header e cambia logo
                     header.classList.add('shrink');
+                    if (headerLogo) {
+                        headerLogo.src = 'SVG/simbolo-cobrynet.svg';
+                    }
                 } else {
-                    // Scrolling UP o in cima - header normale
+                    // Scrolling UP o in cima - header normale e logo originale
                     header.classList.remove('shrink');
+                    if (headerLogo) {
+                        headerLogo.src = 'SVG/logo.svg';
+                    }
                 }
                 
                 ticking = false;
@@ -202,4 +254,78 @@ document.addEventListener('DOMContentLoaded', function() {
             currentX = 0;
         });
     }
+
+    // Enhanced smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '') return;
+            
+            e.preventDefault();
+            
+            // Handle scroll to top for # links
+            if (href === '#') {
+                const startPosition = window.pageYOffset;
+                const distance = -startPosition;
+                const duration = 1200;
+                const startTime = performance.now();
+                
+                function easeInOutCubic(t) {
+                    return t < 0.5 
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                function animation(currentTime) {
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const ease = easeInOutCubic(progress);
+                    
+                    const newPosition = Math.round(startPosition + (distance * ease));
+                    window.scrollTo(0, newPosition);
+                    
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+                return;
+            }
+            
+            const target = document.querySelector(href);
+            
+            if (target) {
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                // All links use same smooth easing
+                const duration = href === '#marketplace' ? 800 : 1200;
+                const startTime = performance.now();
+                
+                // Same smooth easing for all links
+                function easingFunction(t) {
+                    // easeInOutCubic - smooth on both ends
+                    return t < 0.5 
+                        ? 4 * t * t * t
+                        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                function animation(currentTime) {
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const ease = easingFunction(progress);
+                    
+                    const newPosition = Math.round(startPosition + (distance * ease));
+                    window.scrollTo(0, newPosition);
+                    
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+            }
+        });
+    });
 });

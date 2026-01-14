@@ -1,0 +1,51 @@
+<svg width="1" height="280" viewBox="0 0 1 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fadeGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#010101;stop-opacity:1" />
+      <stop offset="2%" style="stop-color:#010101;stop-opacity:0.99" />
+      <stop offset="4%" style="stop-color:#010101;stop-opacity:0.98" />
+      <stop offset="6%" style="stop-color:#010101;stop-opacity:0.96" />
+      <stop offset="8%" style="stop-color:#010101;stop-opacity:0.94" />
+      <stop offset="10%" style="stop-color:#010101;stop-opacity:0.92" />
+      <stop offset="12%" style="stop-color:#010101;stop-opacity:0.89" />
+      <stop offset="14%" style="stop-color:#010101;stop-opacity:0.86" />
+      <stop offset="16%" style="stop-color:#010101;stop-opacity:0.83" />
+      <stop offset="18%" style="stop-color:#010101;stop-opacity:0.80" />
+      <stop offset="20%" style="stop-color:#010101;stop-opacity:0.76" />
+      <stop offset="22%" style="stop-color:#010101;stop-opacity:0.72" />
+      <stop offset="24%" style="stop-color:#010101;stop-opacity:0.68" />
+      <stop offset="26%" style="stop-color:#010101;stop-opacity:0.64" />
+      <stop offset="28%" style="stop-color:#010101;stop-opacity:0.60" />
+      <stop offset="30%" style="stop-color:#010101;stop-opacity:0.56" />
+      <stop offset="33%" style="stop-color:#010101;stop-opacity:0.51" />
+      <stop offset="36%" style="stop-color:#010101;stop-opacity:0.46" />
+      <stop offset="39%" style="stop-color:#010101;stop-opacity:0.41" />
+      <stop offset="42%" style="stop-color:#010101;stop-opacity:0.36" />
+      <stop offset="45%" style="stop-color:#010101;stop-opacity:0.32" />
+      <stop offset="48%" style="stop-color:#010101;stop-opacity:0.28" />
+      <stop offset="51%" style="stop-color:#010101;stop-opacity:0.24" />
+      <stop offset="54%" style="stop-color:#010101;stop-opacity:0.20" />
+      <stop offset="57%" style="stop-color:#010101;stop-opacity:0.17" />
+      <stop offset="60%" style="stop-color:#010101;stop-opacity:0.14" />
+      <stop offset="63%" style="stop-color:#010101;stop-opacity:0.12" />
+      <stop offset="66%" style="stop-color:#010101;stop-opacity:0.10" />
+      <stop offset="69%" style="stop-color:#010101;stop-opacity:0.08" />
+      <stop offset="71%" style="stop-color:#010101;stop-opacity:0.07" />
+      <stop offset="73%" style="stop-color:#010101;stop-opacity:0.06" />
+      <stop offset="75%" style="stop-color:#010101;stop-opacity:0.05" />
+      <stop offset="77%" style="stop-color:#010101;stop-opacity:0.04" />
+      <stop offset="79%" style="stop-color:#010101;stop-opacity:0.035" />
+      <stop offset="81%" style="stop-color:#010101;stop-opacity:0.03" />
+      <stop offset="83%" style="stop-color:#010101;stop-opacity:0.025" />
+      <stop offset="85%" style="stop-color:#010101;stop-opacity:0.02" />
+      <stop offset="87%" style="stop-color:#010101;stop-opacity:0.015" />
+      <stop offset="89%" style="stop-color:#010101;stop-opacity:0.012" />
+      <stop offset="91%" style="stop-color:#010101;stop-opacity:0.01" />
+      <stop offset="100%" style="stop-color:#010101;stop-opacity:0.01" />
+    </linearGradient>
+    <filter id="smoothFilter">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+    </filter>
+  </defs>
+  <rect width="1" height="280" fill="url(#fadeGradient)" filter="url(#smoothFilter)" />
+</svg>

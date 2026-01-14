@@ -5,13 +5,17 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
     font-family: 'Outfit', sans-serif;
     background: white;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -84,6 +88,10 @@ body {
        transform variables preventing width shrink from being visible) */
 }
 
+.header.shrink .logo img {
+    height: 28px;
+}
+
 /* visual hint when JS is applying a scale (debugging aid, low-impact) */
 /* debug class removed to avoid extra paint during scroll */
 
@@ -92,6 +100,15 @@ body {
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 2px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 25px;
+    width: auto;
+    transition: opacity 0.3s ease, height 0.3s ease;
 }
 
 .nav {
@@ -112,7 +129,7 @@ body {
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -28px;
+    bottom: -8px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
@@ -133,7 +150,7 @@ body {
 .nav-link-bordered {
     font-weight: 300;
     padding: 8px 20px;
-    border: 0.5px solid white;
+    border: 1.5px solid white;
     border-radius: 10px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -574,18 +591,73 @@ body {
     padding: 40px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    will-change: transform;
+}
+
+.package-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    background-image: url('SVG/gradient-overlay.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.package-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 -5px 40px rgba(236, 108, 37, 0.4);
 }
 
 .package-dark {
     background: black;
     box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;
+    overflow: visible !important;
+}
+
+.package-dark .package-title {
+    margin-top: 0;
+}
+
+.package-dark .package-image-bottom {
+    position: relative;
+    z-index: 100;
 }
 
 .package-image {
-    background: #525252;
-    background-image: url('https://placehold.co/378x500');
-    background-size: cover;
-    background-position: center;
+    background: black;
+    background-image: url('SVG/sito-mono.svg');
+    background-size: 105%;
+    background-position: center calc(50% + 40px);
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.package-image::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: black;
+    z-index: 0;
+}
+
+.package-image .package-title,
+.package-image .package-description {
+    position: relative;
+    z-index: 1;
 }
 
 .package-icon {
@@ -594,6 +666,7 @@ body {
     margin-bottom: 30px;
     background: rgba(236, 108, 37, 0.1);
     border-radius: 10px;
+    flex-shrink: 0;
 }
 
 .package-title {
@@ -619,6 +692,26 @@ body {
     font-weight: 300;
     line-height: 18px;
     text-align: center;
+}
+
+.package-image-bottom {
+    width: 80%;
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    max-width: calc(100% - 20px);
+}
+
+.package-dark .package-image-bottom {
+    margin-top: 75px;
+}
+
+.package-dark:last-child .package-image-bottom {
+    width: 64%;
+    margin-top: 65px;
 }
 
 .marketplace-cta {
@@ -702,7 +795,7 @@ body {
 
 .ai-section > .carousel-btn {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 40px);
     transform: translateY(-50%);
     z-index: 10;
 }
@@ -935,7 +1028,8 @@ body {
 .ai-icon img {
     width: 80px;
     height: 80px;
-    animation: rotate 4s linear infinite;
+    transition: transform 0.1s linear;
+    will-change: transform;
 }
 
 @keyframes rotate {
@@ -952,6 +1046,14 @@ body {
     font-size: 36px;
     font-weight: 300;
     margin-top: 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.ai-coming-soon.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* CTA Section */
@@ -1100,6 +1202,14 @@ body {
     font-weight: 500;
     letter-spacing: 2px;
     margin-bottom: 40px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.footer-logo:hover {
+    transform: scale(1.02);
 }
 
 .footer-logo img {
