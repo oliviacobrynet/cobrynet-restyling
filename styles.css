@@ -14,6 +14,7 @@ body {
     font-family: 'Outfit', sans-serif;
     background: white;
     overflow-x: hidden;
+    min-width: 1280px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -323,7 +324,7 @@ body {
     color: black;
     font-size: 48px;
     font-weight: 500;
-    line-height: 57px;
+    line-height: 1.2;
     margin-bottom: 30px;
 }
 
@@ -337,7 +338,9 @@ body {
 
 /* Value Proposition */
 .value-prop {
-    padding: 80px 130px 60px;
+    padding: 80px 0 60px;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -393,15 +396,17 @@ body {
 .features {
     display: flex;
     gap: 30px;
-    padding: 80px 0 80px;
+    padding: 80px 30px;
     justify-content: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     flex-wrap: wrap;
 }
 
 .feature-card {
-    width: 276px;
+    flex: 0 1 calc(25% - 23px);
+    min-width: 260px;
+    max-width: 276px;
     height: 375px;
     border-radius: 20px;
     border: 1px solid #D9D9D9;
@@ -410,7 +415,6 @@ body {
     background-size: cover;
     background-position: center;
     cursor: pointer;
-    flex-shrink: 0;
 }
 
 /* Card 1 - Lightning bolt icon */
@@ -530,7 +534,7 @@ body {
     -webkit-text-fill-color: transparent;
     font-size: 128px;
     font-weight: 400;
-    line-height: 155px;
+    line-height: 1.2;
     text-align: center;
     margin-bottom: 30px;
     position: relative;
@@ -577,12 +581,16 @@ body {
 
 .marketplace-packages {
     display: grid;
-    grid-template-columns: repeat(3, 378px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     justify-content: center;
     margin-bottom: 150px;
     position: relative;
     z-index: 10;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 30px;
 }
 
 .package-card {
@@ -728,7 +736,7 @@ body {
 .marketplace-cta {
     text-align: center;
     position: relative;
-    z-index: 10;
+    z-index: 20;
     margin-top: -90px;
 }
 
@@ -737,6 +745,8 @@ body {
     font-size: 36px;
     font-weight: 300;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 9999 !important;
 }
 
 .btn-install {
@@ -1076,6 +1086,7 @@ body {
     align-items: center;
     padding: 80px 0 0 425px;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .cta-background-image {
@@ -1123,9 +1134,10 @@ body {
     top: -20px;
     left: 0;
     width: 100%;
-    height: 500px;
-    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%);
+    height: 300px;
+    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.6) 15%, rgba(0, 0, 0, 0) 40%);
     z-index: 1;
+    pointer-events: none;
 }
 
 .cta-overlay {
@@ -1135,26 +1147,30 @@ body {
     width: 100%;
     height: 450px;
     background: linear-gradient(360deg, black 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: 1;
+    z-index: 2;
 }
 
 .cta-content {
     position: relative;
-    z-index: 10;
+    z-index: 999;
     display: flex;
     align-items: center;
     gap: 40px;
-    transform: translateY(200px);
+    transform: translateY(100px);
 }
 
 .cta-title {
     color: white;
     font-size: 80px;
     font-weight: 300;
+    position: relative;
+    z-index: 9999 !important;
 }
 
 .cta-title .cta-bold {
     font-weight: 500;
+    position: relative;
+    z-index: 9999 !important;
 }
 
 .cta-button {
@@ -1163,6 +1179,7 @@ body {
     align-items: center;
     transition: transform 0.3s ease;
     cursor: pointer;
+    z-index: 999;
 }
 
 .cta-button:hover {
@@ -1182,7 +1199,7 @@ body {
     cursor: grab;
     transition: transform 0.3s;
     position: relative;
-    z-index: 1;
+    z-index: 999;
     user-select: none;
 }
 
@@ -1403,51 +1420,748 @@ body {
 }
 
 /* Responsive Design */
+/* Responsive Design - Focus su valori orizzontali mantenendo margini coerenti */
+
+/* Medium-Large Desktop - 1440px */
+@media (max-width: 1440px) {
+    .header {
+        padding: 0 80px;
+    }
+    
+    .hero-title {
+        font-size: 70px;
+        margin-bottom: 50px;
+    }
+    
+    .hero-subtitle {
+        font-size: 28px;
+    }
+    
+    .about-title {
+        font-size: 44px;
+    }
+    
+    .about-description {
+        font-size: 22px;
+    }
+    
+    .value-title {
+        font-size: 70px;
+    }
+    
+    .value-subtitle {
+        font-size: 22px;
+    }
+    
+    .marketplace-title {
+        font-size: 110px;
+    }
+    
+    .marketplace-subtitle {
+        font-size: 22px;
+    }
+    
+    .ai-title {
+        font-size: 70px;
+    }
+    
+    .ai-subtitle {
+        font-size: 22px;
+    }
+    
+    .cta-title {
+        font-size: 70px;
+    }
+}
+
+/* Large Desktop - 1600px */
 @media (max-width: 1600px) {
     .header {
         padding: 0 60px;
+    }
+    
+    .header-content {
+        max-width: 1300px;
     }
     
     .hero {
         padding-left: 60px;
     }
     
+    .about-content {
+        max-width: 750px;
+    }
+    
+    .value-prop {
+        max-width: 1050px;
+    }
+    
     .features {
         padding: 80px 60px;
-        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .marketplace-content {
+        max-width: 1600px;
     }
     
     .marketplace-packages {
-        grid-template-columns: repeat(auto-fit, 378px);
+        gap: 25px;
+        padding: 0 60px;
+    }
+    
+    .ai-content {
+        max-width: 800px;
     }
 }
 
-@media (max-width: 768px) {
+/* Medium Desktop - 1440px */
+@media (max-width: 1440px) {
+    .header {
+        padding: 0 50px;
+    }
+    
+    .header-content {
+        max-width: 1150px;
+    }
+    
+    .hero {
+        padding-left: 50px;
+    }
+    
+    .hero-content {
+        max-width: 640px;
+    }
+    
+    .about {
+        padding: 100px 50px;
+    }
+    
+    .about-content {
+        max-width: 700px;
+    }
+    
+    .value-prop {
+        max-width: 950px;
+    }
+    
+    .features {
+        padding: 80px 50px;
+    }
+    
+    .marketplace-content {
+        max-width: 1400px;
+    }
+    
+    .ai-content {
+        max-width: 750px;
+    }
+    
+    .cta-content {
+        max-width: 650px;
+        z-index: 999;
+    }
+    
+    .footer {
+        padding: 60px 50px;
+    }
+}
+
+/* Small Desktop / Large Tablet - 1200px */
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 40px;
+    }
+    
+    .header-content {
+        max-width: 1000px;
+    }
+    
+    .hero {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .hero-content {
+        max-width: 580px;
+    }
+    
     .hero-title {
-        font-size: 48px;
+        font-size: 68px;
+    }
+    
+    .hero-subtitle {
+        font-size: 22px;
+    }
+    
+    .about {
+        padding: 90px 40px;
+    }
+    
+    .about-content {
+        max-width: 650px;
+    }
+    
+    .value-prop {
+        max-width: 850px;
+    }
+    
+    .value-title {
+        font-size: 56px;
+    }
+    
+    .features {
+        padding: 70px 40px;
+    }
+    
+    .marketplace {
+        padding: 100px 40px;
+    }
+    
+    .marketplace-content {
+        max-width: 1200px;
+    }
+    
+    .marketplace-title {
+        font-size: 72px;
+    }
+    
+    .marketplace-packages {
+        gap: 18px;
+        padding: 0 40px;
+    }
+    
+    .ai-content {
+        max-width: 700px;
+    }
+    
+    .ai-title {
+        font-size: 56px;
+    }
+    
+    .cta-content {
+        max-width: 600px;
+        z-index: 999;
+    }
+    
+    .footer {
+        padding: 60px 40px;
+    }
+}
+
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+    .header {
+        padding: 0 35px;
+    }
+    
+    .header-content {
+        max-width: 900px;
+    }
+    
+    .nav-links {
+        gap: 30px;
+    }
+    
+    .hero {
+        padding-left: 35px;
+        padding-right: 35px;
+        min-height: 90vh;
+    }
+    
+    .hero-content {
+        max-width: 520px;
+    }
+    
+    .hero-title {
+        font-size: 60px;
     }
     
     .hero-subtitle {
         font-size: 20px;
     }
     
+    .btn-primary,
+    .btn-secondary {
+        padding: 0 40px;
+    }
+    
+    .about {
+        padding: 80px 35px;
+    }
+    
+    .about-content {
+        max-width: 600px;
+    }
+    
+    .about-title {
+        font-size: 56px;
+    }
+    
+    .value-prop {
+        max-width: 750px;
+    }
+    
+    .value-title {
+        font-size: 52px;
+    }
+    
     .features {
-        grid-template-columns: 1fr;
+        padding: 70px 35px;
+        gap: 25px;
+    }
+    
+    .feature-card {
+        flex: 0 1 calc(50% - 12.5px);
+        min-width: 240px;
+    }
+    
+    .marketplace {
+        padding: 90px 35px;
+    }
+    
+    .marketplace-content {
+        max-width: 1000px;
     }
     
     .marketplace-title {
-        font-size: 64px;
+        font-size: 68px;
+    }
+    
+    .marketplace-packages {
+        gap: 20px;
+        padding: 0 50px;
+    }
+    
+    .ai-section {
+        padding: 100px 35px;
+    }
+    
+    .ai-content {
+        max-width: 650px;
+    }
+    
+    .ai-title {
+        font-size: 52px;
+    }
+    
+    .cta-section {
+        height: 800px;
+    }
+    
+    .cta-content {
+        max-width: 550px;
+        z-index: 999;
+    }
+    
+    .cta-title {
+        font-size: 48px;
+        z-index: 999;
+    }
+    
+    .footer {
+        padding: 50px 35px;
+    }
+    
+    .footer-content {
+        gap: 40px;
+    }
+}
+
+/* Mobile Large - 768px */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 30px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+    }
+    
+    .hero {
+        padding: 0 30px;
+        min-height: 85vh;
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .hero-title {
+        font-size: 52px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        padding: 0 30px;
+    }
+    
+    .about {
+        padding: 70px 30px;
+    }
+    
+    .about-title {
+        font-size: 48px;
+    }
+    
+    .about-description {
+        font-size: 18px;
+    }
+    
+    .value-prop {
+        padding: 80px 30px 60px;
     }
     
     .value-title {
         font-size: 48px;
     }
     
+    .features {
+        padding: 60px 30px;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        flex: 0 1 calc(50% - 10px);
+        min-width: 200px;
+    }
+    
+    .feature-card {
+        padding: 40px 30px;
+    }
+    
+    .marketplace {
+        padding: 80px 30px;
+    }
+    
+    .marketplace-title {
+        font-size: 64px;
+    }
+    
+    .marketplace-packages {
+        gap: 15px;
+        padding: 0 30px;
+    }
+    
+    .marketplace-cta {
+        margin-top: -60px;
+        z-index: 20;
+    }
+    
+    .ai-section {
+        padding: 90px 30px;
+    }
+    
     .ai-title {
         font-size: 48px;
     }
     
+    .ai-description {
+        font-size: 18px;
+    }
+    
+    .cta-section {
+        height: 700px;
+    }
+    
+    .cta-title {
+        font-size: 42px;
+    }
+    
+    .cta-description {
+        font-size: 18px;
+    }
+    
+    .btn-marketplace {
+        padding: 0 35px;
+    }
+    
+    .footer {
+        padding: 50px 30px;
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .footer-column {
+        text-align: center;
+    }
+}
+
+/* Mobile Medium - 480px */
+@media (max-width: 480px) {
+    .header {
+        padding: 0 20px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 13px;
+    }
+    
+    .nav-link-bordered {
+        padding: 8px 20px;
+    }
+    
+    .hero {
+        padding: 0 20px;
+        min-height: 80vh;
+    }
+    
+    .hero-title {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-buttons {
+        gap: 12px;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        height: 50px;
+        font-size: 14px;
+        padding: 0 25px;
+    }
+    
+    .about {
+        padding: 60px 20px;
+    }
+    
+    .about-title {
+        font-size: 38px;
+    }
+    
+    .about-description {
+        font-size: 16px;
+    }
+    
+    .value-prop {
+        padding: 70px 20px 50px;
+    }
+    
+    .value-title {
+        font-size: 38px;
+    }
+    
+    .value-description {
+        font-size: 16px;
+    }
+    
+    .features {
+        padding: 50px 20px;
+        gap: 18px;
+    }
+    
+    .feature-card {
+        flex: 0 1 calc(50% - 9px);
+        min-width: 180px;
+        height: 320px;
+    }
+    
+    .feature-card {
+        padding: 35px 25px;
+    }
+    
+    .feature-title {
+        font-size: 22px;
+    }
+    
+    .feature-description {
+        font-size: 15px;
+    }
+    
+    .marketplace {
+        padding: 70px 20px;
+    }
+    
+    .marketplace-title {
+        font-size: 48px;
+    }
+    
+    .marketplace-subtitle {
+        font-size: 16px;
+    }
+    
+    .package-card {
+        padding: 30px 20px;
+    }
+    
+    .package-title {
+        font-size: 22px;
+    }
+    
+    .marketplace-cta {
+        margin-top: -40px;
+        z-index: 20;
+    }
+    
+    .ai-section {
+        padding: 80px 20px;
+    }
+    
+    .ai-title {
+        font-size: 38px;
+    }
+    
+    .ai-description {
+        font-size: 16px;
+    }
+    
+    .cta-section {
+        height: 600px;
+    }
+    
+    .cta-title {
+        font-size: 34px;
+    }
+    
+    .cta-description {
+        font-size: 16px;
+    }
+    
+    .btn-marketplace {
+        height: 50px;
+        font-size: 14px;
+        padding: 0 30px;
+    }
+    
+    .footer {
+        padding: 40px 20px;
+    }
+    
+    .footer-content {
+        gap: 30px;
+    }
+    
+    .footer-title {
+        font-size: 16px;
+    }
+    
+    .footer-links {
+        gap: 12px;
+    }
+    
+    .footer-link,
+    .footer-privacy {
+        font-size: 14px;
+    }
+}
+
+/* Mobile Small - 375px */
+@media (max-width: 375px) {
+    .header {
+        padding: 0 15px;
+    }
+    
+    .nav-links {
+        gap: 12px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+    }
+    
+    .nav-link-bordered {
+        padding: 6px 16px;
+    }
+    
+    .hero {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 15px;
+    }
+    
+    .about {
+        padding: 50px 15px;
+    }
+    
+    .about-title {
+        font-size: 34px;
+    }
+    
+    .value-prop {
+        padding: 60px 15px 45px;
+    }
+    
+    .value-title {
+        font-size: 34px;
+    }
+    
+    .features {
+        padding: 45px 15px;
+        gap: 15px;
+    }
+    
+    .feature-card {
+        flex: 0 1 calc(50% - 7.5px);
+        min-width: 160px;
+        height: 280px;
+    }
+    
+    .feature-card {
+        padding: 30px 20px;
+    }
+    
+    .marketplace {
+        padding: 60px 15px;
+    }
+    
+    .marketplace-title {
+        font-size: 42px;
+    }
+    
+    .package-card {
+        padding: 25px 15px;
+    }
+    
+    .ai-section {
+        padding: 70px 15px;
+    }
+    
+    .ai-title {
+        font-size: 34px;
+    }
+    
+    .cta-section {
+        height: 550px;
+    }
+    
+    .cta-title {
+        font-size: 30px;
+    }
+    
+    .footer {
+        padding: 35px 15px;
     }
 }
