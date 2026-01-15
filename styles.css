@@ -104,6 +104,7 @@ body {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .logo img {
@@ -116,6 +117,8 @@ body {
     display: flex;
     gap: 40px;
     align-items: center;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .nav-link {
@@ -237,6 +240,11 @@ body {
 .hero-buttons-right {
     display: flex;
     gap: 35px;
+    margin-left: auto;
+    flex-shrink: 0;
+    min-width: fit-content;
+    position: relative;
+    right: 0;
 }
 
 .btn-primary,
@@ -591,6 +599,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 0 30px;
+    overflow: visible;
 }
 
 .package-card {
@@ -607,6 +616,7 @@ body {
     cursor: pointer;
     will-change: transform;
     animation: float 7s ease-in-out infinite;
+    min-width: 280px;
 }
 
 .package-card:nth-child(2) {
@@ -932,6 +942,8 @@ body {
     width: fit-content;
     opacity: 0;
     transition: transform 1s ease, opacity 1s ease;
+    white-space: nowrap;
+    max-width: 90%;
 }
 
 .ai-section.visible .donatello-header {
@@ -1084,7 +1096,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    padding: 80px 0 0 425px;
+    padding: 280px 0 0 425px;
     overflow: hidden;
     isolation: isolate;
 }
@@ -1135,7 +1147,7 @@ body {
     left: 0;
     width: 100%;
     height: 300px;
-    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0.6) 15%, rgba(0, 0, 0, 0) 40%);
+    background: linear-gradient(180deg, black 0%, rgba(0, 0, 0, 0) 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -1482,6 +1494,11 @@ body {
     
     .header-content {
         max-width: 1300px;
+        justify-content: space-between;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
     }
     
     .hero {
@@ -1509,6 +1526,33 @@ body {
         padding: 0 60px;
     }
     
+    .package-card {
+        height: 480px;
+        padding: 38px;
+    }
+    
+    .package-title {
+        font-size: 34px;
+        line-height: 37px;
+    }
+    
+    .package-description {
+        font-size: 14px;
+    }
+    
+    .donatello-header {
+        font-size: 44px;
+        line-height: 54px;
+        padding: 32px 55px;
+        border-radius: 38px;
+    }
+    
+    .donatello-header::after {
+        left: 48px;
+        width: 48px;
+        height: 48px;
+    }
+    
     .ai-content {
         max-width: 800px;
     }
@@ -1522,6 +1566,11 @@ body {
     
     .header-content {
         max-width: 1150px;
+        justify-content: space-between;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
     }
     
     .hero {
@@ -1574,6 +1623,11 @@ body {
     
     .header-content {
         max-width: 1000px;
+        justify-content: space-between;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
     }
     
     .hero {
@@ -1630,6 +1684,33 @@ body {
         padding: 0 40px;
     }
     
+    .package-card {
+        height: 450px;
+        padding: 35px 30px;
+    }
+    
+    .package-title {
+        font-size: 32px;
+        line-height: 35px;
+    }
+    
+    .package-description {
+        font-size: 14px;
+    }
+    
+    .donatello-header {
+        font-size: 40px;
+        line-height: 48px;
+        padding: 28px 50px;
+        border-radius: 35px;
+    }
+    
+    .donatello-header::after {
+        left: 45px;
+        width: 45px;
+        height: 45px;
+    }
+    
     .ai-content {
         max-width: 700px;
     }
@@ -1656,6 +1737,11 @@ body {
     
     .header-content {
         max-width: 900px;
+        justify-content: space-between;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
     }
     
     .nav-links {
@@ -1732,6 +1818,33 @@ body {
         padding: 0 50px;
     }
     
+    .package-card {
+        height: 430px;
+        padding: 32px 25px;
+    }
+    
+    .package-title {
+        font-size: 30px;
+        line-height: 33px;
+    }
+    
+    .package-description {
+        font-size: 13px;
+    }
+    
+    .donatello-header {
+        font-size: 36px;
+        line-height: 44px;
+        padding: 25px 45px;
+        border-radius: 32px;
+    }
+    
+    .donatello-header::after {
+        left: 40px;
+        width: 42px;
+        height: 42px;
+    }
+    
     .ai-section {
         padding: 100px 35px;
     }
@@ -1771,6 +1884,11 @@ body {
 @media (max-width: 768px) {
     .header {
         padding: 0 30px;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
+        gap: 25px;
     }
     
     .nav-links {
@@ -1858,9 +1976,37 @@ body {
         padding: 0 30px;
     }
     
+    .package-card {
+        height: 400px;
+        padding: 28px 20px;
+    }
+    
+    .package-title {
+        font-size: 26px;
+        line-height: 29px;
+        margin-bottom: 15px;
+    }
+    
+    .package-description {
+        font-size: 13px;
+    }
+    
     .marketplace-cta {
         margin-top: -60px;
         z-index: 20;
+    }
+    
+    .donatello-header {
+        font-size: 32px;
+        line-height: 40px;
+        padding: 22px 40px;
+        border-radius: 28px;
+    }
+    
+    .donatello-header::after {
+        left: 35px;
+        width: 38px;
+        height: 38px;
     }
     
     .ai-section {
@@ -1909,6 +2055,11 @@ body {
 @media (max-width: 480px) {
     .header {
         padding: 0 20px;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
+        gap: 20px;
     }
     
     .nav-links {
@@ -2024,6 +2175,20 @@ body {
         padding: 80px 20px;
     }
     
+    .donatello-header {
+        font-size: 28px;
+        line-height: 36px;
+        padding: 20px 35px;
+        border-radius: 25px;
+        top: -35px;
+    }
+    
+    .donatello-header::after {
+        left: 32px;
+        width: 35px;
+        height: 35px;
+    }
+    
     .ai-title {
         font-size: 38px;
     }
@@ -2076,6 +2241,11 @@ body {
 @media (max-width: 375px) {
     .header {
         padding: 0 15px;
+    }
+    
+    .hero-buttons-right {
+        margin-left: auto;
+        gap: 15px;
     }
     
     .nav-links {
@@ -2147,6 +2317,20 @@ body {
     
     .ai-section {
         padding: 70px 15px;
+    }
+    
+    .donatello-header {
+        font-size: 24px;
+        line-height: 32px;
+        padding: 18px 30px;
+        border-radius: 22px;
+        top: -30px;
+    }
+    
+    .donatello-header::after {
+        left: 28px;
+        width: 32px;
+        height: 32px;
     }
     
     .ai-title {
