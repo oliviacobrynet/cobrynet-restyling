@@ -182,18 +182,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // CTA Drag to Navigate
     const ctaButton = document.querySelector('.cta-button');
-    const ctaCircle = document.querySelector('.cta-circle');
     const ctaGradient = document.querySelector('.cta-gradient');
+    const ctaCircle = document.querySelector('.cta-circle');
     
     if (ctaButton && ctaCircle) {
         let isDragging = false;
         let startX = 0;
-        let offsetX = 0;
-        let currentX = 0;
-        let maxDistance = 0;
-        
         ctaCircle.addEventListener('mousedown', (e) => {
             isDragging = true;
+            ctaCircle.dataset.dragging = 'true';
             const rect = ctaCircle.getBoundingClientRect();
             // Salva la posizione iniziale del cerchio e l'offset del mouse rispetto ad esso
             startX = rect.left;
@@ -331,4 +328,55 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Hero tooltip follows mouse
+    const heroTitle = document.querySelector('.hero-title');
+    const heroTooltip = document.querySelector('.hero-tooltip');
+    
+    console.log('Tooltip setup:', heroTitle, heroTooltip);
+    
+    if (heroTitle && heroTooltip) {
+        // Crea un elemento temporaneo per misurare solo "DIGITALIZZAZIONE."
+        const tempSpan = document.createElement('span');
+        tempSpan.style.visibility = 'hidden';
+        tempSpan.style.position = 'absolute';
+        tempSpan.style.whiteSpace = 'nowrap';
+        tempSpan.style.fontSize = window.getComputedStyle(heroTitle).fontSize;
+        tempSpan.style.fontFamily = window.getComputedStyle(heroTitle).fontFamily;
+        tempSpan.style.fontWeight = window.getComputedStyle(heroTitle).fontWeight;
+        tempSpan.textContent = 'DIGITALIZZAZIONE.';
+        document.body.appendChild(tempSpan);
+        const digitalizationeWidth = tempSpan.offsetWidth;
+        document.body.removeChild(tempSpan);
+        
+        console.log('Width calculated:', digitalizationeWidth);
+        
+        heroTitle.addEventListener('mousemove', function(e) {
+            const rect = heroTitle.getBoundingClientRect();
+            const mouseRelativeX = e.clientX - rect.left;
+            
+            console.log('Mouse move:', mouseRelativeX, 'vs', digitalizationeWidth);
+            
+            // Controlla se il mouse è dentro la larghezza di "DIGITALIZZAZIONE."
+            if (mouseRelativeX <= digitalizationeWidth) {
+                // Mostra il tooltip e aggiorna la posizione
+                heroTooltip.style.setProperty('opacity', '1', 'important');
+                heroTooltip.style.setProperty('visibility', 'visible', 'important');
+                heroTooltip.style.setProperty('left', (e.clientX + 20) + 'px', 'important');
+                heroTooltip.style.setProperty('top', e.clientY + 'px', 'important');
+                console.log('Showing tooltip at', e.clientX, e.clientY);
+            } else {
+                // Nascondi il tooltip se il mouse supera la larghezza
+                heroTooltip.style.setProperty('opacity', '0', 'important');
+                heroTooltip.style.setProperty('visibility', 'hidden', 'important');
+                console.log('Hiding tooltip');
+            }
+        });
+        
+        heroTitle.addEventListener('mouseleave', function() {
+            heroTooltip.style.setProperty('opacity', '0', 'important');
+            heroTooltip.style.setProperty('visibility', 'hidden', 'important');
+            console.log('Mouse left');
+        });
+    }
 });
