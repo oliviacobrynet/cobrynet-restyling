@@ -258,8 +258,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Enhanced smooth scroll for all anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            // Skip if it's an external link
+            if (this.getAttribute('target') === '_blank') return;
+            
             const href = this.getAttribute('href');
-            if (href === '') return;
+            if (href === '' || href === 'javascript:void(0)') return;
             
             e.preventDefault();
             
