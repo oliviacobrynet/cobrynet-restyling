@@ -1,12 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
-    let ticking = false;
-    
-    console.log('Header elements:', header, headerLogo);
-    console.log('Document height:', document.documentElement.scrollHeight);
-    console.log('Window height:', window.innerHeight);
-    console.log('Can scroll:', document.documentElement.scrollHeight > window.innerHeight);
     
     // Loading icon scroll-based rotation
     const loadingIcon = document.querySelector('.ai-icon img');
@@ -18,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Base slow rotation animation
     function animateBaseRotation() {
-        baseRotation += 0.4; // Slow base rotation speed
+        baseRotation += 0.4;
         if (loadingIcon) {
             loadingIcon.style.transform = `rotate(${baseRotation + rotation}deg)`;
         }
@@ -44,42 +38,46 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(comingSoonText);
     }
     
-    console.log('Registering scroll listener...');
+    // Optimized scroll listener with throttling
+    let lastKnownScrollPosition = 0;
+    let rafId = null;
+    
+    function handleScroll() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Calculate scroll speed
+        scrollSpeed = Math.abs(scrollTop - lastScrollY);
+        lastScrollY = scrollTop;
+        
+        // Accumulate rotation based on scroll speed
+        if (loadingIcon) {
+            rotation += scrollSpeed * 0.5;
+        }
+        
+        if (scrollTop > 100) {
+            if (!header.classList.contains('shrink')) {
+                header.classList.add('shrink');
+            }
+            if (headerLogo && headerLogo.src.indexOf('simbolo-cobrynet.svg') === -1) {
+                console.log('Changing logo to simbolo-cobrynet.svg');
+                headerLogo.src = 'SVG/simbolo-cobrynet.svg';
+            }
+        } else {
+            if (header.classList.contains('shrink')) {
+                header.classList.remove('shrink');
+            }
+            if (headerLogo && headerLogo.src.indexOf('logo.svg') === -1) {
+                console.log('Changing logo back to logo.svg');
+                headerLogo.src = 'SVG/logo.svg';
+            }
+        }
+        
+        rafId = null;
+    }
     
     window.addEventListener('scroll', function() {
-        console.log('SCROLL EVENT TRIGGERED!', window.pageYOffset);
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // Calculate scroll speed
-                scrollSpeed = Math.abs(scrollTop - lastScrollY);
-                lastScrollY = scrollTop;
-                
-                // Accumulate rotation based on scroll speed
-                if (loadingIcon) {
-                    rotation += scrollSpeed * 0.5; // Adjust multiplier for rotation speed
-                }
-                
-                if (scrollTop > 100) {
-                    // Scrolling DOWN (oltre 100px) - stringi l'header e cambia logo
-                    console.log('Adding shrink class');
-                    header.classList.add('shrink');
-                    if (headerLogo) {
-                        headerLogo.src = 'SVG/simbolo-cobrynet.svg';
-                    }
-                } else {
-                    // Scrolling UP o in cima - header normale e logo originale
-                    console.log('Removing shrink class');
-                    header.classList.remove('shrink');
-                    if (headerLogo) {
-                        headerLogo.src = 'SVG/logo.svg';
-                    }
-                }
-                
-                ticking = false;
-            });
-            ticking = true;
+        if (rafId === null) {
+            rafId = window.requestAnimationFrame(handleScroll);
         }
     }, { passive: true });
 
