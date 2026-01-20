@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerLogo = document.querySelector('.logo img');
     let ticking = false;
     
+    console.log('Header elements:', header, headerLogo);
+    console.log('Document height:', document.documentElement.scrollHeight);
+    console.log('Window height:', window.innerHeight);
+    console.log('Can scroll:', document.documentElement.scrollHeight > window.innerHeight);
+    
     // Loading icon scroll-based rotation
     const loadingIcon = document.querySelector('.ai-icon img');
     const comingSoonText = document.querySelector('.ai-coming-soon');
@@ -39,7 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(comingSoonText);
     }
     
+    console.log('Registering scroll listener...');
+    
     window.addEventListener('scroll', function() {
+        console.log('SCROLL EVENT TRIGGERED!', window.pageYOffset);
         if (!ticking) {
             window.requestAnimationFrame(function() {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -55,12 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (scrollTop > 100) {
                     // Scrolling DOWN (oltre 100px) - stringi l'header e cambia logo
+                    console.log('Adding shrink class');
                     header.classList.add('shrink');
                     if (headerLogo) {
                         headerLogo.src = 'SVG/simbolo-cobrynet.svg';
                     }
                 } else {
                     // Scrolling UP o in cima - header normale e logo originale
+                    console.log('Removing shrink class');
                     header.classList.remove('shrink');
                     if (headerLogo) {
                         headerLogo.src = 'SVG/logo.svg';
@@ -71,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             ticking = true;
         }
-    }, false);
+    }, { passive: true });
 
     // Carousel functionality
     let currentSlide = 0;

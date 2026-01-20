@@ -5,7 +5,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     scroll-padding-top: 80px;
@@ -25,9 +25,6 @@ body {
     width: 100%;
     position: relative;
     background: white;
-    will-change: scroll-position;
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
 /* Header */
@@ -193,6 +190,8 @@ body {
     object-fit: cover;
     z-index: 1;
     pointer-events: none;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .hero-overlay {
@@ -529,7 +528,8 @@ body {
     pointer-events: none;
     opacity: 0;
     transform: translateX(-60%) scale(0.8);
-    transition: opacity 0.3s ease-out 0.15s, transform 0.3s ease-out 0.15s;
+    transition: opacity 0.5s ease-out 0.15s, transform 0.5s ease-out 0.15s;
+    will-change: opacity, transform;
 }
 
 .marketplace-blur-bg-orange.visible {
@@ -573,7 +573,8 @@ body {
     pointer-events: none;
     opacity: 0;
     transform: translateX(calc(-40% - 200px)) scale(0.8);
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    will-change: opacity, transform;
 }
 
 .marketplace-blur-bg.visible {
@@ -595,12 +596,12 @@ body {
     position: relative;
     z-index: 10;
     animation: gradient-shift 8s ease infinite;
-    will-change: background-position;
+    will-change: background-position, opacity, transform;
     transform: translateZ(0);
     backface-visibility: hidden;
     opacity: 0;
     transform: translateY(50px);
-    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
+    transition: opacity 0.8s ease-out 0.15s, transform 0.8s ease-out 0.15s;
 }
 
 .marketplace-title.visible {
@@ -631,9 +632,11 @@ body {
     z-index: 10;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out 0.23s, transform 0.8s ease-out 0.23s;
+    transition: opacity 0.8s ease-out 0.20s, transform 0.8s ease-out 0.20s;
+    will-change: opacity, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
-
 .marketplace-subtitle.visible {
     opacity: 1;
     transform: translateY(0);
