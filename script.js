@@ -379,4 +379,48 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Mouse left');
         });
     }
+
+    // Marketplace section scroll animation
+    const marketplaceTitle = document.querySelector('.marketplace-title');
+    const marketplaceSubtitle = document.querySelector('.marketplace-subtitle');
+    const marketplaceBlurOrange = document.querySelector('.marketplace-blur-bg-orange');
+    const marketplaceBlurBlack = document.querySelector('.marketplace-blur-bg');
+    
+    if (marketplaceTitle && marketplaceSubtitle) {
+        // Observer per il testo
+        const textObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+        
+        // Observer per lo sfondo - parte prima
+        const bgObserverOptions = {
+            root: null,
+            rootMargin: '100px',
+            threshold: 0.05
+        };
+        
+        const textObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, textObserverOptions);
+        
+        const bgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, bgObserverOptions);
+        
+        textObserver.observe(marketplaceTitle);
+        textObserver.observe(marketplaceSubtitle);
+        
+        if (marketplaceBlurOrange) bgObserver.observe(marketplaceBlurOrange);
+        if (marketplaceBlurBlack) bgObserver.observe(marketplaceBlurBlack);
+    }
 });
