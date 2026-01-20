@@ -505,6 +505,7 @@ body {
     height: 125vw;
     min-width: 2400px;
     min-height: 2400px;
+    max-height: 2800px;
     position: absolute;
     top: -100px;
     left: 50%;
@@ -549,6 +550,7 @@ body {
     height: 160vw;
     min-width: 2500px;
     min-height: 2500px;
+    max-height: 3000px;
     position: absolute;
     top: -50px;
     left: 50%;
