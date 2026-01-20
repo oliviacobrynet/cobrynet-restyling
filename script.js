@@ -2,6 +2,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
     
+    // Force immediate scroll behavior to fix Chrome Windows mouse wheel issue
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+    
+    // Smooth scroll for anchor links only (not for mouse wheel)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
     // Loading icon scroll-based rotation
     const loadingIcon = document.querySelector('.ai-icon img');
     const comingSoonText = document.querySelector('.ai-coming-soon');
