@@ -393,42 +393,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const marketplaceSubtitle = document.querySelector('.marketplace-subtitle');
     const marketplaceBlurOrange = document.querySelector('.marketplace-blur-bg-orange');
     const marketplaceBlurBlack = document.querySelector('.marketplace-blur-bg');
+    const marketplaceSection = document.querySelector('.marketplace-section');
     
-    if (marketplaceTitle && marketplaceSubtitle) {
-        // Observer per il testo
-        const textObserverOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.2
-        };
+    let marketplaceTitleVisible = false;
+    let marketplaceSubtitleVisible = false;
+    
+    // Funzione per controllare la visibilità del marketplace in base allo scroll
+    function checkMarketplaceVisibility() {
+        if (!marketplaceSection || !marketplaceTitle) return;
         
-        // Observer per lo sfondo - parte prima
-        const bgObserverOptions = {
-            root: null,
-            rootMargin: '100px',
-            threshold: 0.05
-        };
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const marketplaceTop = marketplaceSection.offsetTop;
+        const marketplaceHeight = marketplaceSection.offsetHeight;
+        const windowHeight = window.innerHeight;
         
-        const textObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Calcola quanto è visibile la sezione marketplace
+        const sectionVisible = scrollTop + windowHeight > marketplaceTop;
+        const scrollIntoSection = scrollTop + windowHeight - marketplaceTop;
+        
+        // Mostra il titolo quando la sezione inizia ad essere visibile
+        if (sectionVisible && !marketplaceTitleVisible && scrollIntoSection > 100) {
+            marketplaceTitle.classList.add('visible');
+            marketplaceTitleVisible = true;
+        }
+        
+        // Mostra il sottotitolo subito dopo il titolo
+        if (marketplaceTitleVisible && !marketplaceSubtitleVisible) {
+            setTimeout(() => {
+                if (marketplaceSubtitle) {
+                    marketplaceSubtitle.classList.add('visible');
+                    marketplaceSubtitleVisible = true;
                 }
-            });
-        }, textObserverOptions);
-        
-        const bgObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, bgObserverOptions);
-        
-        textObserver.observe(marketplaceTitle);
-        textObserver.observe(marketplaceSubtitle);
-        
-        if (marketplaceBlurOrange) bgObserver.observe(marketplaceBlurOrange);
-        if (marketplaceBlurBlack) bgObserver.observe(marketplaceBlurBlack);
+            }, 100);
+        }
     }
+    
+    // Aggiungi il controllo marketplace alla funzione di scroll esistente
+    window.addEventListener('scroll', checkMarketplaceVisibility, { passive: true });
+    checkMarketplaceVisibility(); // Controlla al caricamento
 });
