@@ -1418,6 +1418,11 @@ body {
     font-size: 14px;
     font-weight: 300;
     line-height: 1.8;
+    transition: color 0.3s;
+}
+
+.footer-text:hover {
+    color: white;
 }
 
 .footer-link {
