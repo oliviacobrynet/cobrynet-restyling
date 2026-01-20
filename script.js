@@ -398,37 +398,45 @@ document.addEventListener('DOMContentLoaded', function() {
     let marketplaceTitleVisible = false;
     let marketplaceSubtitleVisible = false;
     
-    // Funzione per controllare la visibilità del marketplace in base allo scroll
-    function checkMarketplaceVisibility() {
+    // Aggiungi la logica marketplace alla funzione handleScroll esistente
+    const originalHandleScroll = handleScroll;
+    handleScroll = function() {
+        originalHandleScroll();
+        
         if (!marketplaceSection || !marketplaceTitle) return;
         
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const marketplaceTop = marketplaceSection.offsetTop;
-        const marketplaceHeight = marketplaceSection.offsetHeight;
         const windowHeight = window.innerHeight;
         
         // Calcola quanto è visibile la sezione marketplace
         const sectionVisible = scrollTop + windowHeight > marketplaceTop;
         const scrollIntoSection = scrollTop + windowHeight - marketplaceTop;
         
+        // Usa la velocità di scroll corrente
+        const currentScrollSpeed = scrollSpeed || 0;
+        
         // Mostra il titolo quando la sezione inizia ad essere visibile
+        // Più veloce è lo scroll, più rapida è l'apparizione
         if (sectionVisible && !marketplaceTitleVisible && scrollIntoSection > 100) {
-            marketplaceTitle.classList.add('visible');
-            marketplaceTitleVisible = true;
+            const titleDelay = Math.max(20, 250 - currentScrollSpeed * 8);
+            setTimeout(() => {
+                if (marketplaceTitle && !marketplaceTitleVisible) {
+                    marketplaceTitle.classList.add('visible');
+                    marketplaceTitleVisible = true;
+                }
+            }, titleDelay);
         }
         
-        // Mostra il sottotitolo subito dopo il titolo
-        if (marketplaceTitleVisible && !marketplaceSubtitleVisible) {
+        // Mostra il sottotitolo quando è visibile, con delay basato sulla velocità di scroll IN QUEL MOMENTO
+        if (sectionVisible && marketplaceTitleVisible && !marketplaceSubtitleVisible && scrollIntoSection > 200) {
+            const subtitleDelay = Math.max(20, 200 - currentScrollSpeed * 6);
             setTimeout(() => {
-                if (marketplaceSubtitle) {
+                if (marketplaceSubtitle && !marketplaceSubtitleVisible) {
                     marketplaceSubtitle.classList.add('visible');
                     marketplaceSubtitleVisible = true;
                 }
-            }, 100);
+            }, subtitleDelay);
         }
-    }
-    
-    // Aggiungi il controllo marketplace alla funzione di scroll esistente
-    window.addEventListener('scroll', checkMarketplaceVisibility, { passive: true });
-    checkMarketplaceVisibility(); // Controlla al caricamento
+    };
 });
