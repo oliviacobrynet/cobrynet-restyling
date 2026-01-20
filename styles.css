@@ -304,6 +304,11 @@ body {
 
 .btn-primary:hover {
     width: 215px;
+    cursor: pointer !important;
+}
+
+.btn-primary:active {
+    cursor: grabbing !important;
 }
 
 .btn-primary:hover .arrow-icon {
