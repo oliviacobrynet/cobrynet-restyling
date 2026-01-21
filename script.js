@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroTooltip.style.setProperty('opacity', '1', 'important');
                 heroTooltip.style.setProperty('visibility', 'visible', 'important');
                 heroTooltip.style.setProperty('left', (e.clientX + 20) + 'px', 'important');
-                heroTooltip.style.setProperty('top', e.clientY + 'px', 'important');
+                heroTooltip.style.setProperty('top', (e.clientY + 20) + 'px', 'important');
                 console.log('Showing tooltip at', e.clientX, e.clientY);
             } else {
                 // Nascondi il tooltip se il mouse supera la larghezza
