@@ -209,14 +209,30 @@ body {
     margin-bottom: 20px;
 }
 
+.hero-title-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
 .hero-title {
     color: white;
     font-size: 80px;
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 60px;
+    margin-bottom: 0;
     position: relative;
     cursor: pointer;
+}
+
+.hero-illustration {
+    height: 200px;
+    width: auto;
+    flex-shrink: 0;
+    margin-left: auto;
+    animation: float-hero 6s ease-in-out infinite;
 }
 
 .hero-tooltip {
@@ -1207,6 +1223,15 @@ body {
     }
     50% {
         transform: translateY(-20px);
+    }
+}
+
+@keyframes float-hero {
+    0%, 100% {
+        transform: translateY(340px);
+    }
+    50% {
+        transform: translateY(325px);
     }
 }
 
