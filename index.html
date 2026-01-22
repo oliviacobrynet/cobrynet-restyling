@@ -23,32 +23,30 @@
         </div>
     </header>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <!-- Background video (fills hero). File: video/video-sfumature.mp4 -->
-            <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
-                <source src="video/video-sfumature.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <p class="hero-subtitle">Cobrynet è il tuo partner strategico per<br/>crescere nel mercato di domani.</p>
-                <div class="hero-title-container">
-                    <h1 class="hero-title">
-                        DIGITALIZZAZIONE.<br/>INNOVAZIONE.<br/>PROGRESSO.
-                        <span class="hero-tooltip">USIAMO LA TECNOLOGIA<br/>PER TROVARE SOLUZIONI</span>
-                    </h1>
-                    <img src="SVG/illustrazione-hero2.svg?v=2" alt="" class="hero-illustration">
-                </div>
-                <div class="hero-buttons">
-                    <a href="https://www.brynetapp.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                        <img src="SVG/brynet.svg" alt="BRYNET" style="height: 24px;">
-                        <img src="SVG/freccia.svg" alt="" class="arrow-icon" style="height: 20px;">
-                    </a>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Background video (fills hero). File: video/video-sfumature.mp4 -->
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true" tabindex="-1">
+            <source src="video/video-sfumature.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Cobrynet è il tuo partner strategico per<br/>crescere nel mercato di domani.</p>
+            <div class="hero-title-container">
+                <h1 class="hero-title">
+                    DIGITALIZZAZIONE.<br/>INNOVAZIONE.<br/>PROGRESSO.
+                </h1>
             </div>
-        </section>
+            <div class="hero-buttons">
+                <a href="https://www.brynetapp.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    <img src="SVG/brynet.svg" alt="BRYNET" style="height: 24px;">
+                    <img src="SVG/freccia.svg" alt="" class="arrow-icon" style="height: 20px;">
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <div class="container">
         <!-- About Section -->
         <section class="about" id="chi-siamo">
             <h2 class="about-title">Cobrynet è un acceleratore di<br/>crescita per le imprese</h2>
@@ -196,7 +194,7 @@
 
         <!-- CTA Section -->
         <section class="cta-section">
-            <img src="foto/mockup.png" alt="Brynet Interface" class="cta-background-image">
+            <video src="video/sfondo-video.mp4" autoplay loop muted playsinline class="cta-background-image"></video>
             <div class="cta-overlay-top"></div>
             <div class="cta-overlay"></div>
             <div class="cta-content">
@@ -370,5 +368,8 @@
             })();
         </script>
         <script src="script.js"></script>
+        
+        <!-- Tooltip for logo hover -->
+        <span class="hero-tooltip">USIAMO LA TECNOLOGIA<br/>PER TROVARE SOLUZIONI</span>
 </body>
 </html>

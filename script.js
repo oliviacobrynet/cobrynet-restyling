@@ -358,54 +358,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Hero tooltip follows mouse
-    const heroTitle = document.querySelector('.hero-title');
+    // Hero tooltip follows mouse on logo hover
+    const logo = document.querySelector('.logo');
     const heroTooltip = document.querySelector('.hero-tooltip');
     
-    console.log('Tooltip setup:', heroTitle, heroTooltip);
+    console.log('Tooltip setup:', logo, heroTooltip);
     
-    if (heroTitle && heroTooltip) {
-        // Crea un elemento temporaneo per misurare solo "DIGITALIZZAZIONE."
-        const tempSpan = document.createElement('span');
-        tempSpan.style.visibility = 'hidden';
-        tempSpan.style.position = 'absolute';
-        tempSpan.style.whiteSpace = 'nowrap';
-        tempSpan.style.fontSize = window.getComputedStyle(heroTitle).fontSize;
-        tempSpan.style.fontFamily = window.getComputedStyle(heroTitle).fontFamily;
-        tempSpan.style.fontWeight = window.getComputedStyle(heroTitle).fontWeight;
-        tempSpan.textContent = 'DIGITALIZZAZIONE.';
-        document.body.appendChild(tempSpan);
-        const digitalizationeWidth = tempSpan.offsetWidth;
-        document.body.removeChild(tempSpan);
-        
-        console.log('Width calculated:', digitalizationeWidth);
-        
-        heroTitle.addEventListener('mousemove', function(e) {
-            const rect = heroTitle.getBoundingClientRect();
-            const mouseRelativeX = e.clientX - rect.left;
-            
-            console.log('Mouse move:', mouseRelativeX, 'vs', digitalizationeWidth);
-            
-            // Controlla se il mouse è dentro la larghezza di "DIGITALIZZAZIONE."
-            if (mouseRelativeX <= digitalizationeWidth) {
-                // Mostra il tooltip e aggiorna la posizione
-                heroTooltip.style.setProperty('opacity', '1', 'important');
-                heroTooltip.style.setProperty('visibility', 'visible', 'important');
-                heroTooltip.style.setProperty('left', (e.clientX + 20) + 'px', 'important');
-                heroTooltip.style.setProperty('top', (e.clientY + 20) + 'px', 'important');
-                console.log('Showing tooltip at', e.clientX, e.clientY);
-            } else {
-                // Nascondi il tooltip se il mouse supera la larghezza
-                heroTooltip.style.setProperty('opacity', '0', 'important');
-                heroTooltip.style.setProperty('visibility', 'hidden', 'important');
-                console.log('Hiding tooltip');
-            }
+    if (logo && heroTooltip) {
+        logo.addEventListener('mousemove', function(e) {
+            // Mostra il tooltip e aggiorna la posizione
+            heroTooltip.style.setProperty('opacity', '1', 'important');
+            heroTooltip.style.setProperty('visibility', 'visible', 'important');
+            heroTooltip.style.setProperty('left', (e.clientX + 20) + 'px', 'important');
+            heroTooltip.style.setProperty('top', (e.clientY + 20) + 'px', 'important');
+            console.log('Showing tooltip at', e.clientX, e.clientY);
         });
         
-        heroTitle.addEventListener('mouseleave', function() {
+        logo.addEventListener('mouseleave', function() {
             heroTooltip.style.setProperty('opacity', '0', 'important');
             heroTooltip.style.setProperty('visibility', 'hidden', 'important');
-            console.log('Mouse left');
+            console.log('Mouse left logo');
         });
     }
 

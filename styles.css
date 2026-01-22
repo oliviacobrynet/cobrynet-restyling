@@ -13,7 +13,7 @@ html {
 
 body {
     font-family: 'Outfit', sans-serif;
-    background: white;
+    background: black;
     overflow-x: hidden;
     min-width: 1280px;
     -webkit-font-smoothing: antialiased;
@@ -25,6 +25,8 @@ body {
     position: relative;
     background: white;
     will-change: scroll-position;
+    border-radius: 50px 50px 0 0;
+    overflow: hidden;
 }
 
 /* Header */
@@ -165,6 +167,18 @@ body {
     display: flex;
     align-items: center;
     padding: 0 129px;
+    overflow: visible;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: black;
+    z-index: -1;
 }
 
 .hero-video {
@@ -228,11 +242,12 @@ body {
 }
 
 .hero-illustration {
-    height: 200px;
+    height: 160px;
     width: auto;
     flex-shrink: 0;
     margin-left: auto;
     animation: float-hero 6s ease-in-out infinite;
+    z-index: 11;
 }
 
 .hero-tooltip {
@@ -254,7 +269,7 @@ body {
     transition: opacity 0.15s ease-out, visibility 0.15s, left 0.05s ease-out, top 0.05s ease-out;
     pointer-events: none;
     box-shadow: 0 8px 32px rgba(255, 115, 0, 0.2);
-    z-index: 99999;
+    z-index: 999999;
     will-change: left, top, opacity;
 }
 
@@ -387,6 +402,7 @@ body {
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
+    background: white;
 }
 
 .value-title {
@@ -1194,7 +1210,7 @@ body {
     object-fit: cover;
     object-position: center;
     z-index: 0;
-    transform: scale(1.15);
+    transform: scale(1.1);
     animation: float 6s ease-in-out infinite;
 }
 
@@ -1227,10 +1243,10 @@ body {
 
 @keyframes float-hero {
     0%, 100% {
-        transform: translateY(340px);
+        transform: translateY(calc(-50% + 0px));
     }
     50% {
-        transform: translateY(325px);
+        transform: translateY(calc(-50% - 15px));
     }
 }
 
@@ -1599,7 +1615,7 @@ body {
 
 /* Large Desktop - 1600px */
 @media (max-width: 1600px) {
-    .header {
+    .hero {
         padding: 0 60px;
     }
     
@@ -1613,7 +1629,11 @@ body {
     }
     
     .hero {
-        padding-left: 60px;
+        padding: 0 60px;
+    }
+    
+    .hero-illustration {
+        right: 60px;
     }
     
     .about-content {
@@ -1685,7 +1705,11 @@ body {
     }
     
     .hero {
-        padding-left: 50px;
+        padding: 0 50px;
+    }
+    
+    .hero-illustration {
+        right: 50px;
     }
     
     .hero-content {
@@ -1742,8 +1766,12 @@ body {
     }
     
     .hero {
-        padding-left: 40px;
+        padding: 0 40px;
         padding-right: 40px;
+    }
+    
+    .hero-illustration {
+        right: 40px;
     }
     
     .hero-content {
@@ -1825,19 +1853,6 @@ body {
     .ai-content {
         max-width: 700px;
     }
-    
-    .ai-title {
-        font-size: 56px;
-    }
-    
-    .cta-content {
-        max-width: 600px;
-        z-index: 999;
-    }
-    
-    .footer {
-        padding: 60px 40px;
-    }
 }
 
 /* Tablet - 1024px */
@@ -1860,9 +1875,13 @@ body {
     }
     
     .hero {
-        padding-left: 35px;
+        padding: 0 35px;
         padding-right: 35px;
         min-height: 90vh;
+    }
+    
+    .hero-illustration {
+        right: 35px;
     }
     
     .hero-content {
@@ -1940,7 +1959,7 @@ body {
     }
     
     .package-description {
-        font-size: 13px;
+        font-size: 14px;
     }
     
     .donatello-header {
@@ -1984,10 +2003,6 @@ body {
     
     .footer {
         padding: 50px 35px;
-    }
-    
-    .footer-content {
-        gap: 40px;
     }
 }
 
@@ -2247,14 +2262,6 @@ body {
     
     .feature-card {
         padding: 35px 25px;
-    }
-    
-    .feature-title {
-        font-size: 22px;
-    }
-    
-    .feature-description {
-        font-size: 15px;
     }
     
     .marketplace {
