@@ -5,7 +5,7 @@
 }
 
 html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     scroll-padding-top: 80px;
@@ -24,7 +24,7 @@ body {
     width: 100%;
     position: relative;
     background: white;
-    will-change: scroll-position;
+    transform: translateZ(0);
     border-radius: 50px 50px 0 0;
     overflow: hidden;
     z-index: 10;
@@ -187,14 +187,18 @@ body {
 .hero-video {
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 110%;
-    height: 110%;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: cover;
     z-index: 1;
     pointer-events: none;
-    transform: translate(-50%, -50%) translateZ(0);
+    transform: translateY(-50%) translateZ(0) scale(1.1);
+    transform-origin: right center;
     backface-visibility: hidden;
+    will-change: transform;
 }
 
 .hero-overlay {
@@ -255,13 +259,13 @@ body {
 
 .hero-tooltip {
     position: fixed;
-    background: rgba(255, 115, 0, 0.3);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 115, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: none;
     border-radius: 15px;
     padding: 12px 20px;
-    color: white;
+    color: black;
     font-size: 16px;
     font-weight: 500;
     white-space: normal;
@@ -513,6 +517,8 @@ body {
     height: 100%;
     object-fit: cover;
     z-index: 1;
+    transform: translateZ(0);
+    will-change: transform;
 }
 
 .feature-content {
@@ -577,7 +583,7 @@ body {
     background: linear-gradient(180deg, white 0%, #525252 20%, black 40%);
     overflow: visible;
     z-index: 0;
-    will-change: scroll-position;
+    transform: translateZ(0);
     isolation: isolate;
 }
 
@@ -1039,7 +1045,7 @@ body {
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 1800px;
+    max-width: 1400px;
     min-height: 600px;
     margin-bottom: 100px;
 }
@@ -1147,6 +1153,27 @@ body {
 
 .carousel-next {
     transform: none;
+}
+
+/* Increase carousel arrow spacing on medium and large screens */
+@media (min-width: 1440px) {
+    .carousel-prev {
+        margin-right: 80px;
+    }
+    
+    .carousel-next {
+        margin-left: 80px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .carousel-prev {
+        margin-right: 120px;
+    }
+    
+    .carousel-next {
+        margin-left: 120px;
+    }
 }
 
 .donatello-text {
