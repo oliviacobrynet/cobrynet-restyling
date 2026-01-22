@@ -259,10 +259,10 @@ body {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: none;
-    border-radius: 20px;
-    padding: 15px 25px;
+    border-radius: 15px;
+    padding: 12px 20px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     white-space: normal;
     text-align: center;
@@ -470,12 +470,18 @@ body {
     max-width: 276px;
     height: 375px;
     border-radius: 20px;
-    border: 1px solid #D9D9D9;
+    border: none;
     position: relative;
     overflow: hidden;
     background-size: cover;
     background-position: center;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.feature-card:hover {
+    transform: scale(1.03);
 }
 
 /* Card 1 - Lightning bolt icon */
@@ -486,6 +492,7 @@ body {
 /* Card 2 - Hand with phone */
 .feature-card-2 {
     background: #6a6a6a;
+    background-position: 1px 0;
 }
 
 /* Card 3 - Circuit board */
@@ -520,6 +527,31 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+.feature-card:hover .feature-content {
+    background: transparent;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-image: url('SVG/simbolo-cobrynet.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: brightness(0) invert(1);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
 }
 
 .feature-title {
