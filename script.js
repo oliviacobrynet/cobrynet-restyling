@@ -432,4 +432,107 @@ document.addEventListener('DOMContentLoaded', function() {
             }, subtitleDelay);
         }
     };
+    
+    // Mobile responsive scaling with max 500% (5x) - no height adjustment needed
+    function scaleMobileContent() {
+        if (window.innerWidth > 1279) {
+            // Reset body height for desktop
+            document.body.style.minHeight = '';
+            document.body.style.height = '';
+        }
+    }
+    
+    // Run on load and resize
+    window.addEventListener('load', scaleMobileContent);
+    window.addEventListener('resize', scaleMobileContent);
+    
+    // Run immediately
+    scaleMobileContent();
+    
+    // Blocca completamente lo scroll orizzontale e zoom su mobile
+    if (window.innerWidth <= 1279) {
+        // BLOCCA ZOOM/PINCH
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+        
+        // Blocca doppio tap per zoom
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Blocca pinch-to-zoom rilevando multiple dita
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        document.addEventListener('touchmove', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Blocca scroll orizzontale in modo aggressivo
+        let lastScrollLeft = 0;
+        
+        const preventHorizontalScroll = () => {
+            if (window.scrollX !== 0) {
+                window.scrollTo(0, window.scrollY);
+            }
+            if (document.documentElement.scrollLeft !== 0) {
+                document.documentElement.scrollLeft = 0;
+            }
+            if (document.body.scrollLeft !== 0) {
+                document.body.scrollLeft = 0;
+            }
+        };
+        
+        // Previeni ogni tentativo di scroll orizzontale
+        window.addEventListener('scroll', preventHorizontalScroll, { passive: true });
+        document.addEventListener('scroll', preventHorizontalScroll, { passive: true });
+        
+        // Blocca touch orizzontale
+        let touchStartX = 0;
+        let touchStartY = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1) {
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                const diffX = Math.abs(touchX - touchStartX);
+                const diffY = Math.abs(touchY - touchStartY);
+                
+                // Se movimento più orizzontale che verticale, blocca
+                if (diffX > diffY && diffX > 10) {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        }, { passive: false });
+        
+        // Forza controllo continuo
+        setInterval(preventHorizontalScroll, 50);
+    }
 });
