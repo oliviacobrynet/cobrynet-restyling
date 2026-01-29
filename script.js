@@ -535,4 +535,32 @@ document.addEventListener('DOMContentLoaded', function() {
         // Forza controllo continuo
         setInterval(preventHorizontalScroll, 50);
     }
+    
+    // Animazione linea verticale con scroll
+    const animatedLine = document.querySelector('.animated-line');
+    const animatedDot = document.querySelector('.animated-dot');
+    
+    const lineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Aggiungi il pallino dopo un piccolo ritardo
+                if (entry.target === animatedLine) {
+                    setTimeout(() => {
+                        if (animatedDot) {
+                            animatedDot.classList.add('visible');
+                        }
+                    }, 800);
+                }
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px'
+    });
+    
+    if (animatedLine) {
+        lineObserver.observe(animatedLine);
+    }
 });
