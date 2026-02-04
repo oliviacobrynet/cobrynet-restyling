@@ -1448,6 +1448,8 @@ body {
     z-index: 10;
 }
 
+
+
 .footer-content {
     display: flex;
     justify-content: space-between;
@@ -2098,6 +2100,71 @@ body {
         gap: 20px;
     }
     
+    /* Nascondi le immagini nelle tre card del marketplace su mobile */
+    .package-card .package-image-bottom,
+    .package-image-centered {
+        display: none;
+    }
+    
+    /* Carosello per le tre card su mobile */
+    .marketplace-packages {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 20px;
+        padding: 0 20px;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 60px;
+    }
+    
+    .package-card {
+        flex: 0 0 100%;
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+        scroll-snap-align: start;
+        animation: none;
+    }
+    
+    .package-card:hover {
+        transform: none;
+        animation: none;
+        box-shadow: none;
+    }
+    
+    /* Marketplace dots - Mobile only */
+    .marketplace-dots {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .marketplace-dots .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 3px solid #EC6C25;
+        padding: 0;
+    }
+    
+    .marketplace-dots .dot:hover {
+        background: #EC6C25;
+        border-color: white;
+        transform: scale(1.2);
+    }
+    
+    .marketplace-dots .dot.active {
+        background: #EC6C25;
+        border-color: white;
+        transform: scale(1.5);
+        box-shadow: 0 0 15px rgba(236, 108, 37, 1);
+    }
+    
     .nav-link {
         font-size: 14px;
     }
@@ -2169,22 +2236,15 @@ body {
     .marketplace {
         padding: 80px 30px;
     }
-    
+
     .marketplace-title {
         font-size: 64px;
     }
-    
-    .marketplace-packages {
-        gap: 15px;
-        padding: 0 30px;
-    }
-    
+
     .package-card {
         height: 400px;
         padding: 28px 20px;
-    }
-    
-    .package-title {
+    }    .package-title {
         font-size: 26px;
         line-height: 29px;
         margin-bottom: 15px;
@@ -2661,9 +2721,80 @@ body {
     .mobile-wrapper * {
         max-width: 100vw;
     }
+    
+    /* MARKETPLACE CAROUSEL ON MOBILE */
+    /* Nasconde i 3 pacchetti singoli Figma */
+    
+    /* Hide all marketplace package cards from Figma (position absolute) */
+    .mobile-content .mobile-wrapper > div > div[style*="top: 2889px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 2924px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3010px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3105"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3126px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3298px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3376px"],
+    /* Hide SVG and CTA elements after packages */
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3200px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3250px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3298px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3350px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3400px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3420px"],
+    .mobile-content .mobile-wrapper > div > div[style*="top: 3450px"] {
+        display: none !important;
+    }
+    
+    /* Position carousel inside the scaled wrapper - SCROLL ONE CARD AT A TIME */
+    #mobile-marketplace-carousel {
+        position: absolute !important;
+        left: 25px !important;
+        top: 2900px !important;
+        width: calc(100% - 50px) !important;
+        max-width: unset !important;
+        padding: 0 !important;
+        display: flex !important;
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        gap: 20px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+        border: none !important;
+        scroll-padding: 0 !important;
+        overscroll-behavior: contain !important;
+        touch-action: pan-x !important;
+        height: auto !important;
+        pointer-events: auto !important;
+        z-index: 100 !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+    }
+    
+    #mobile-marketplace-carousel > div {
+        flex: 0 0 calc(100% - 0px) !important;
+        scroll-snap-align: start !important;
+        min-width: calc(100% - 0px) !important;
+    }
+    
+    #mobile-marketplace-carousel::-webkit-scrollbar {
+        display: none;
+    }
+    
+    #mobile-marketplace-dots {
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 3150px !important;
+        width: 100% !important;
+        margin: 0 !important;
+        z-index: 15 !important;
+    }
 }
 
 /* Animazione pulse con doppio battito */
+
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
@@ -2747,4 +2878,21 @@ body {
 .animated-dot.visible {
     opacity: 1;
     transform: scale(1);
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animazione Donatello - RIMOSSA */
+.donatello-container {
+    opacity: 1;
+    transform: translateY(0);
 }

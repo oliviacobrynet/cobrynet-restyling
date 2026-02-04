@@ -113,7 +113,7 @@
             <h2 class="marketplace-title">Marketplace</h2>
             <p class="marketplace-subtitle">Acquista e potenzia il tuo ecosistema di marketing grazie al marketplace interno</p>
             
-            <div class="marketplace-packages">
+            <div class="marketplace-packages" id="marketplace-carousel">
                 <div class="package-card package-dark">
                     <h3 class="package-title"><span class="package-light">Pacchetto<br/></span><span class="package-bold">Social Media</span></h3>
                     <p class="package-description">Servizio dedicato allo sviluppo di grafiche professionali pensate esclusivamente per i social media.</p>
@@ -128,6 +128,12 @@
                     <p class="package-description">Sviluppo di un sito web multipagina, professionale e completo, ideato per rappresentare al meglio la tua attività.</p>
                     <img src="SVG/sito-multi.svg" alt="Sito Web Multipagina" class="package-image-bottom">
                 </div>
+            </div>
+            
+            <div class="marketplace-dots" id="marketplace-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
             </div>
 
             <div class="marketplace-cta">
@@ -373,6 +379,42 @@
             <div style="width: 343px; height: 45px; left: 25px; top: 2739px; position: absolute; text-align: center; color: #EC6C25; font-size: 40px; font-family: Outfit; font-weight: 500; line-height: 47.55px; word-wrap: break-word">Marketplace</div>
             <div style="width: 343px; height: 99px; left: 25px; top: 843px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; word-wrap: break-word">Un sistema integrato di brand e partnership strategiche pensato per guidare la trasformazione digitale e rafforzare la competitività aziendale in un mercato in costante evoluzione</div>
             <div style="width: 343px; height: 39px; left: 25px; top: 2799px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; word-wrap: break-word">Acquista e potenzia il tuo ecosistema di marketing grazie al marketplace interno</div>
+            
+            <!-- MOBILE CAROUSEL SECTION -->
+            <div style="position: relative; width: 100%; padding: 20px 0; margin-bottom: 100px; z-index: 10;">
+                <div id="mobile-marketplace-carousel" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding: 0 20px; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%;">
+                    <!-- Card 1 -->
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Pacchetto</span><br/><span style="font-weight: 500;">Social Media</span></div>
+                        <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Servizio dedicato allo sviluppo di grafiche professionali pensate esclusivamente per i social media.</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Monopagina</span></div>
+                        <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web one page progettato per presentare la tua attività in modo diretto ed efficace.</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Multipagina</span></div>
+                        <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web multipagina, professionale e completo, ideato per rappresentare al meglio la tua attività.</p>
+                    </div>
+                </div>
+                <!-- Dots Navigation -->
+                <div id="mobile-marketplace-dots" style="display: flex; gap: 12px; justify-content: center; margin-top: 10px;">
+                    <span class="mobile-dot active" data-index="0" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                    <span class="mobile-dot" data-index="1" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                    <span class="mobile-dot" data-index="2" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                </div>
+            </div>
+            <!-- END MOBILE CAROUSEL SECTION -->
+            
+            <!-- BRYNET INFO BOX -->
+            <div style="position: absolute; width: 343px; height: auto; left: 25px; top: 3260px; padding: 0; z-index: 10; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h3 style="color: white; font-size: 18px; font-family: Outfit; font-weight: 400; margin: 0 0 20px 0; line-height: 1.4;">Per maggiori informazioni, installa la piattaforma</h3>
+                <img src="data:image/svg+xml,%3Csvg viewBox='0 0 180 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%23FFFFFF'%3Ebrynet%3C/text%3E%3C/svg%3E" alt="brynet logo" style="width: 120px; height: auto;">
+            </div>
+            <!-- END BRYNET INFO BOX -->
+            
             <div style="width: 343px; height: 39px; left: 25px; top: 3689px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; word-wrap: break-word">Ti accompagnerà durante le esperienze di marketing, strategia e report</div>
             <div style="width: 343px; height: 44px; left: 25px; top: 1216px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; word-wrap: break-word">Tutto quello che serve per la tua comunicazione digitale, in un'unica piattaforma</div>
             <div style="width: 240px; height: 30px; left: 77px; top: 1404px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Outfit; font-weight: 400; line-height: 36.38px; word-wrap: break-word">Agenzia attiva</div>
@@ -400,21 +442,24 @@
                 <img src="SVG/brynet.svg" alt="Brynet" style="height: 26px;">
                 <img src="SVG/freccia.svg" alt="Arrow" style="width: 23px; height: 17px;">
             </div>
-            <div style="width: 342px; height: 259px; left: 25px; top: 3772px; position: absolute; border-radius: 20px; border: 0.5px white solid; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px 50px 20px;"></div>
-            <div style="width: 302px; left: 45px; top: 3800px; position: absolute; text-align: center; color: white; font-size: 32px; font-family: Outfit; font-weight: 500; line-height: 38.04px; word-wrap: break-word">Donatello</div>
-            <div style="width: 302px; left: 45px; top: 3850px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; line-height: 20px; word-wrap: break-word"><span style="font-size: 20px; font-weight: 500;">Donatello è il tuo supporto virtuale</span><br/><br/>Ti aiuterà a creare la tua strategia, analizzerà le tue performance ed è sempre disponibile per rispondere a qualsiasi tua domanda</div>
+            <div class="donatello-container visible" style="width: 342px; height: 259px; left: 25px; top: 3772px; position: absolute; border-radius: 20px; background: #EC6C25; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px 50px 20px;">
+                <div style="text-align: center; color: white; font-size: 32px; font-family: Outfit; font-weight: 500; line-height: 38.04px; word-wrap: break-word; margin-bottom: 15px;">Donatello</div>
+                <div style="text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; line-height: 20px; word-wrap: break-word;"><span style="font-size: 20px; font-weight: 500;">Donatello è il tuo supporto virtuale</span><br/><br/>Ti aiuterà a creare la tua strategia, analizzerà le tue performance ed è sempre disponibile per rispondere a qualsiasi tua domanda</div>
+            </div>
             
             <!-- Vai all'APP section with background video -->
-            <div style="width: 393px; height: 300px; left: 0px; top: 4300px; position: absolute; overflow: hidden;">
+            <div style="width: 393px; height: 450px; left: 0px; top: 4170px; position: absolute; overflow: hidden;">
                 <video autoplay loop muted playsinline style="width: 120%; height: 120%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     <source src="video/sfondo-video.mp4" type="video/mp4">
                 </video>
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
+                <!-- Black gradient overlay at bottom of video -->
+                <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 150px; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%); z-index: 10;"></div>
             </div>
             
-            <div style="width: 392px; left: 1px; top: 4358px; position: absolute; text-align: center"><span style="color: white; font-size: 48px; font-family: Outfit; font-weight: 300; line-height: 54.17px; word-wrap: break-word">Vai all'</span><span style="color: white; font-size: 48px; font-family: Outfit; font-weight: 500; line-height: 54.17px; word-wrap: break-word">APP</span></div>
-            <div style="width: 196px; height: 53px; left: 197px; top: 4448px; position: absolute; background: linear-gradient(90deg, #EC6C25 33%, rgba(0, 0, 0, 0) 100%)"></div>
-            <div style="width: 53px; height: 53px; left: 170px; top: 4448px; position: absolute; background: #EC6C25; border-radius: 9999px; display: flex; align-items: center; justify-content: center;">
+            <div style="width: 392px; left: 1px; top: 4228px; position: absolute; text-align: center"><span style="color: white; font-size: 48px; font-family: Outfit; font-weight: 300; line-height: 54.17px; word-wrap: break-word">Vai all'</span><span style="color: white; font-size: 48px; font-family: Outfit; font-weight: 500; line-height: 54.17px; word-wrap: break-word">APP</span></div>
+            <div style="width: 196px; height: 53px; left: 197px; top: 4318px; position: absolute; background: linear-gradient(90deg, #EC6C25 33%, rgba(0, 0, 0, 0) 100%)"></div>
+            <div style="width: 53px; height: 53px; left: 170px; top: 4318px; position: absolute; background: #EC6C25; border-radius: 9999px; display: flex; align-items: center; justify-content: center;">
                 <img src="SVG/freccia.svg" alt="Arrow" style="width: 23px; height: 17px;">
             </div>
             <img src="SVG/logo.svg" alt="COBRYNET" style="width: 125px; height: 23px; left: 25px; top: 4693px; position: absolute;">

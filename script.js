@@ -2,6 +2,118 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
     
+    // Marketplace Carousel Dots Navigation
+    const marketplaceCarousel = document.getElementById('marketplace-carousel');
+    const marketplaceDots = document.getElementById('marketplace-dots');
+    
+    if (marketplaceCarousel && marketplaceDots) {
+        // Update dots on scroll
+        marketplaceCarousel.addEventListener('scroll', function() {
+            const scrollLeft = this.scrollLeft;
+            const cardWidth = this.querySelector('.package-card').offsetWidth;
+            const currentIndex = Math.round(scrollLeft / (cardWidth + 20)); // 20px è il gap
+            
+            // Update all dots
+            document.querySelectorAll('.marketplace-dots .dot').forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        });
+        
+        // Click dots to scroll to card
+        document.querySelectorAll('.marketplace-dots .dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                const cardWidth = marketplaceCarousel.querySelector('.package-card').offsetWidth;
+                marketplaceCarousel.scrollLeft = index * (cardWidth + 20);
+            });
+        });
+    }
+    
+    // MOBILE Marketplace Carousel - TOUCH SWIPE ENABLED
+    const mobileMarketplaceCarousel = document.getElementById('mobile-marketplace-carousel');
+    const mobileMarketplaceDots = document.getElementById('mobile-marketplace-dots');
+    
+    if (mobileMarketplaceCarousel && mobileMarketplaceDots) {
+        let startX = 0;
+        let scrollLeft = 0;
+        let isDown = false;
+        
+        mobileMarketplaceCarousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - mobileMarketplaceCarousel.offsetLeft;
+            scrollLeft = mobileMarketplaceCarousel.scrollLeft;
+        });
+        
+        mobileMarketplaceCarousel.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        
+        mobileMarketplaceCarousel.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        
+        mobileMarketplaceCarousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - mobileMarketplaceCarousel.offsetLeft;
+            const walk = (x - startX) * 1;
+            mobileMarketplaceCarousel.scrollLeft = scrollLeft - walk;
+        });
+        
+        // TOUCH SWIPE for mobile
+        let touchStartX = 0;
+        let touchScrollLeft = 0;
+        
+        mobileMarketplaceCarousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchScrollLeft = mobileMarketplaceCarousel.scrollLeft;
+        }, { passive: true });
+        
+        mobileMarketplaceCarousel.addEventListener('touchmove', (e) => {
+            if (!touchStartX) return;
+            const x = e.touches[0].clientX;
+            const walk = touchStartX - x;
+            mobileMarketplaceCarousel.scrollLeft = touchScrollLeft + walk;
+        }, { passive: true });
+        
+        mobileMarketplaceCarousel.addEventListener('touchend', () => {
+            touchStartX = 0;
+        }, { passive: true });
+        
+        // Update dots on scroll
+        mobileMarketplaceCarousel.addEventListener('scroll', function() {
+            const scrollLeft = this.scrollLeft;
+            const containerWidth = this.offsetWidth;
+            const currentIndex = Math.round(scrollLeft / containerWidth);
+            
+            // Update all dots
+            document.querySelectorAll('#mobile-marketplace-dots .mobile-dot').forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.style.background = '#EC6C25';
+                    dot.style.transform = 'scale(1.5)';
+                    dot.style.boxShadow = '0 0 15px rgba(236, 108, 37, 1)';
+                } else {
+                    dot.style.background = 'white';
+                    dot.style.transform = 'scale(1)';
+                    dot.style.boxShadow = 'none';
+                }
+            });
+        });
+        
+        // Click dots to scroll to card
+        document.querySelectorAll('#mobile-marketplace-dots .mobile-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                const containerWidth = mobileMarketplaceCarousel.offsetWidth;
+                mobileMarketplaceCarousel.scrollLeft = index * containerWidth;
+            });
+        });
+    }
+    
     // Force immediate scroll behavior to fix Chrome Windows mouse wheel issue
     document.documentElement.style.scrollBehavior = 'auto';
     document.body.style.scrollBehavior = 'auto';
@@ -562,5 +674,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (animatedLine) {
         lineObserver.observe(animatedLine);
+    }
+
+    // Animazione contenitore Donatello con scroll
+    const donatelloContainer = document.querySelector('.donatello-container');
+    
+    if (donatelloContainer) {
+        function checkDonatelloVisibility() {
+            const rect = donatelloContainer.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isVisible && !donatelloContainer.classList.contains('visible')) {
+                donatelloContainer.classList.add('visible');
+            }
+        }
+        
+        // Controlla al caricamento
+        checkDonatelloVisibility();
+        
+        // Controlla allo scroll
+        window.addEventListener('scroll', checkDonatelloVisibility, { passive: true });
     }
 });
