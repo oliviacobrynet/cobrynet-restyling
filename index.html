@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Cobrynet - Partner Strategico per la Crescita</title>
     <link rel="icon" type="image/png" href="foto/favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=forceupdate3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -23,6 +23,20 @@
                 <a href="#info" class="nav-link">INFO</a>
             </nav>
         </div>
+        
+        <!-- Hamburger Menu Button -->
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Apri menu">
+            <svg width="27" height="23" viewBox="0 0 27 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 1.91667C0 0.85651 0.85651 0 1.91667 0H24.9167C25.9768 0 26.8333 0.85651 26.8333 1.91667C26.8333 2.97682 25.9768 3.83333 24.9167 3.83333H1.91667C0.85651 3.83333 0 2.97682 0 1.91667ZM0 11.5C0 10.4398 0.85651 9.58333 1.91667 9.58333H24.9167C25.9768 9.58333 26.8333 10.4398 26.8333 11.5C26.8333 12.5602 25.9768 13.4167 24.9167 13.4167H1.91667C0.85651 13.4167 0 12.5602 0 11.5ZM26.8333 21.0833C26.8333 22.1435 25.9768 23 24.9167 23H1.91667C0.85651 23 0 22.1435 0 21.0833C0 20.0232 0.85651 19.1667 1.91667 19.1667H24.9167C25.9768 19.1667 26.8333 20.0232 26.8333 21.0833Z" fill="white"/>
+            </svg>
+        </button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#chi-siamo" class="mobile-nav-link">CHI SIAMO</a>
+            <a href="https://www.brynetapp.com/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">BRYNET</a>
+            <a href="#info" class="mobile-nav-link">INFO</a>
+        </nav>
     </header>
 
     <!-- Hero Section -->
@@ -352,8 +366,14 @@
 
     <!-- Mobile Content -->
     <div class="mobile-content">
+        <!-- FIXED MOBILE HEADER -->
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 60px; z-index: 99999;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.50); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"></div>
+            <img src="SVG/logo.svg" alt="COBRYNET" style="position: absolute; top: 50%; left: 25px; transform: translateY(-50%); width: 114px; height: auto;">
+            <img src="SVG/burger.svg" alt="Menu" onclick="document.getElementById('hamburger-btn').click();" style="position: absolute; top: 50%; right: 25px; transform: translateY(-50%); width: 18.5px; height: auto; cursor: pointer;">
+        </div>
         <div class="mobile-wrapper">
-        <div style="width: 393px; height: 5500px; position: relative; background: transparent; transform-origin: top left;">
+        <div style="width: 393px; height: 5352px; overflow: hidden; position: relative; background: transparent; transform-origin: top left;">
             <div style="width: 52px; height: 53px; left: 171px; top: 4130px; position: absolute; overflow: hidden">
                 <div style="width: 12.99px; height: 3.32px; left: 0px; top: 24.84px; position: absolute; background: #EC6C25"></div>
                 <div style="width: 12.99px; height: 3.32px; left: 39.01px; top: 24.84px; position: absolute; background: #EC6C25"></div>
@@ -409,9 +429,12 @@
             <!-- END MOBILE CAROUSEL SECTION -->
             
             <!-- BRYNET INFO BOX -->
-            <div style="position: absolute; width: 343px; height: auto; left: 25px; top: 3260px; padding: 0; z-index: 10; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <div style="position: absolute; width: 343px; height: auto; left: 25px; top: 3290px; padding: 0; z-index: 10; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                 <h3 style="color: white; font-size: 18px; font-family: Outfit; font-weight: 400; margin: 0 0 20px 0; line-height: 1.4;">Per maggiori informazioni, installa la piattaforma</h3>
-                <img src="data:image/svg+xml,%3Csvg viewBox='0 0 180 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='40' font-weight='bold' fill='%23FFFFFF'%3Ebrynet%3C/text%3E%3C/svg%3E" alt="brynet logo" style="width: 120px; height: auto;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid white; border-radius: 10px; padding: 10px 20px;">
+                    <img src="SVG/brynet.svg" alt="Brynet" style="height: 26px;">
+                    <img src="SVG/freccia.svg" alt="Arrow" style="width: 20px;">
+                </div>
             </div>
             <!-- END BRYNET INFO BOX -->
             
@@ -458,7 +481,7 @@
             
             <!-- Vai all'APP section with background video -->
             <div style="width: 393px; height: 450px; left: 0px; top: 4170px; position: absolute; overflow: hidden;">
-                <video autoplay loop muted playsinline style="width: 120%; height: 120%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                <video class="mobile-footer-video" autoplay loop muted playsinline webkit-playsinline style="width: 120%; height: 120%; object-fit: cover; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     <source src="video/sfondo-video.mp4" type="video/mp4">
                 </video>
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3);"></div>
@@ -494,11 +517,7 @@
             </a>
             <div style="width: 343px; height: 17px; left: 25px; top: 5277px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Outfit; font-weight: 300; word-wrap: break-word">Design by Cobrynet</div>
             <div style="width: 393px; height: 17px; left: 0px; top: 5325px; position: absolute; text-align: center; color: white; font-size: 14px; font-family: Outfit; font-weight: 300; word-wrap: break-word">2025 COBRYNET | All rights reserved.</div>
-            <div style="width: 393px; height: 59px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0)">
-                <div style="width: 393px; height: 59px; left: 0px; top: 0px; position: absolute; background: rgba(0, 0, 0, 0.50)"></div>
-            </div>
-            <img src="SVG/logo.svg" alt="COBRYNET" style="width: 114px; height: 21px; left: 25px; top: 19px; position: absolute;">
-            <div style="width: 18.50px; height: 15.86px; left: 349px; top: 24.14px; position: absolute; background: white"></div>
+
         </div>
         </div>
     </div>

@@ -2,6 +2,36 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
     
+    // ===== HAMBURGER MENU =====
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    if (hamburgerBtn && mobileNav) {
+        // Toggle menu
+        hamburgerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hamburgerBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburgerBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!header.contains(e.target)) {
+                hamburgerBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+    }
+    
     // Marketplace Carousel Dots Navigation
     const marketplaceCarousel = document.getElementById('marketplace-carousel');
     const marketplaceDots = document.getElementById('marketplace-dots');
@@ -545,6 +575,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
+    // Logic for Mobile Fixed Burger Menu
+    const mobileBurger = document.getElementById('burger-mobile-fixed');
+    if (mobileBurger) {
+        mobileBurger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Reuse existing mobile nav logic or trigger the main hamburger button
+            const mainHamburger = document.getElementById('hamburger-btn');
+            if(mainHamburger) {
+                mainHamburger.click();
+            } else {
+                // Fallback if main button logic isn't accessible directly
+                const mobileNav = document.getElementById('mobile-nav');
+                if(mobileNav) {
+                     mobileNav.classList.toggle('active');
+                }
+            }
+        });
+    }
+    
     // Mobile responsive scaling with max 500% (5x) - no height adjustment needed
     function scaleMobileContent() {
         if (window.innerWidth > 1279) {
@@ -694,5 +743,32 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Controlla allo scroll
         window.addEventListener('scroll', checkDonatelloVisibility, { passive: true });
+    }
+    
+    // Force mobile video playback
+    const mobileVideo = document.querySelector('.mobile-footer-video');
+    if (mobileVideo) {
+        // Try to play immediately
+        const playPromise = mobileVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Mobile video autoplay prevented:", error);
+                // Add click listener to body as fallback to start video on first interaction
+                const startVideo = () => {
+                    mobileVideo.play();
+                    document.removeEventListener('click', startVideo);
+                    document.removeEventListener('touchstart', startVideo);
+                };
+                document.addEventListener('click', startVideo);
+                document.addEventListener('touchstart', startVideo);
+            });
+        }
+        
+        // Ensure loop continues even if browser tries to pause it
+        mobileVideo.addEventListener('pause', () => {
+            if (!mobileVideo.seeking && mobileVideo.currentTime > 0 && !mobileVideo.paused && !mobileVideo.ended) {
+               mobileVideo.play();
+            }
+        });
     }
 });

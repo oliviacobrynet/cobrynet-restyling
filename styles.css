@@ -99,6 +99,58 @@ body {
     flex-shrink: 0;
 }
 
+/* Hamburger Button */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 99999 !important;
+}
+
+.hamburger-btn svg {
+    width: 27px !important;
+    height: 23px !important;
+    display: block !important;
+    fill: white;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    border-top: 1px solid rgba(236, 108, 37, 0.3);
+    z-index: 999;
+}
+
+.mobile-nav.active {
+    display: flex;
+}
+
+.mobile-nav-link {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+    color: #ec6c25;
+}
+
 .logo img {
     height: 25px;
     width: auto;
@@ -1945,6 +1997,14 @@ body {
         justify-content: space-between;
     }
     
+    .nav {
+        display: none;
+    }
+    
+    .hamburger-btn {
+        display: flex;
+    }
+    
     .hero-buttons-right {
         margin-left: auto;
     }
@@ -2643,6 +2703,7 @@ body {
         overflow-x: hidden !important;
         width: 100%;
         max-width: 100%;
+        min-width: 0 !important;
         margin: 0;
         padding: 0;
         touch-action: pan-y !important;
