@@ -120,28 +120,33 @@ body {
     fill: white;
 }
 
-/* Mobile Navigation */
+/* Mobile Navigation - Right Sidebar */
 .mobile-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen */
+    width: 250px; /* Adjust width as needed */
+    height: 100vh;
     background: rgba(0, 0, 0, 0.95);
     flex-direction: column;
-    gap: 20px;
-    padding: 30px;
-    border-top: 1px solid rgba(236, 108, 37, 0.3);
-    z-index: 999;
+    justify-content: flex-start; /* Was center, now starts from top */
+    gap: 30px;
+    padding: 100px 30px 30px 30px; /* Increased top padding to clear the cross */
+    border-left: 1px solid rgba(236, 108, 37, 0.3);
+    z-index: 100000;
+    transition: right 0.4s ease-in-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .mobile-nav.active {
-    display: flex;
+    right: 0; /* Slide in */
 }
 
 .mobile-nav-link {
     color: white;
-    font-size: 16px;
+    font-size: 20px; /* Increased from 16px */
     font-weight: 400;
     text-decoration: none;
     transition: color 0.3s ease;

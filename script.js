@@ -25,11 +25,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!header.contains(e.target)) {
+            if (!header.contains(e.target) && !mobileNav.contains(e.target)) {
                 hamburgerBtn.classList.remove('active');
                 mobileNav.classList.remove('active');
             }
         });
+
+        // Close menu with X button
+        const mobileNavClose = document.getElementById('mobile-nav-close');
+        if (mobileNavClose) {
+            mobileNavClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                hamburgerBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        }
     }
     
     // Marketplace Carousel Dots Navigation
@@ -745,30 +755,145 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('scroll', checkDonatelloVisibility, { passive: true });
     }
     
-    // Force mobile video playback
-    const mobileVideo = document.querySelector('.mobile-footer-video');
-    if (mobileVideo) {
+    // Force mobile video playback for ALL videos in mobile content
+    const mobileVideos = document.querySelectorAll('.mobile-content video');
+    
+    mobileVideos.forEach(video => {
+        // Ensure critical attributes are set
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('loop', '');
+        video.setAttribute('muted', '');
+        video.muted = true; // Force property
+
         // Try to play immediately
-        const playPromise = mobileVideo.play();
+        const playPromise = video.play();
+        
         if (playPromise !== undefined) {
             playPromise.catch(error => {
                 console.log("Mobile video autoplay prevented:", error);
-                // Add click listener to body as fallback to start video on first interaction
-                const startVideo = () => {
-                    mobileVideo.play();
-                    document.removeEventListener('click', startVideo);
-                    document.removeEventListener('touchstart', startVideo);
+                
+                // Add one-time listener to body to start ALL videos on first interaction
+                const startAllVideos = () => {
+                    video.play();
                 };
-                document.addEventListener('click', startVideo);
-                document.addEventListener('touchstart', startVideo);
+                document.addEventListener('click', startAllVideos, { once: true });
+                document.addEventListener('touchstart', startAllVideos, { once: true });
             });
         }
         
-        // Ensure loop continues even if browser tries to pause it
-        mobileVideo.addEventListener('pause', () => {
-            if (!mobileVideo.seeking && mobileVideo.currentTime > 0 && !mobileVideo.paused && !mobileVideo.ended) {
-               mobileVideo.play();
+        // Aggressively prevent pausing to ensure loop
+        video.addEventListener('pause', (e) => {
+            // Don't fight seeking or ended events, but restart if paused unexpectedly
+            if (!video.seeking && !video.ended) {
+               console.log("Video paused unexpectedly, forcing play");
+               video.play();
             }
+        });
+
+        // Re-trigger play when tab becomes visible again
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && video.paused) {
+                video.play();
+            }
+        });
+    });
+
+    // Mobile Swipe to Navigate
+    const swipeBtn = document.getElementById('mobile-swipe-btn');
+    const swipeTrack = document.getElementById('mobile-swipe-track');
+
+    if (swipeBtn && swipeTrack) {
+        let isDragging = false;
+        let startX = 0;
+        let initialLeft = 170; // Based on CSS
+        let maxDistance = 200; // Approx width of track plus some buffer
+
+        console.log('Swipe init');
+        
+        function handleStart(e) {
+            e.stopPropagation(); // Stop scrolling the page while swiping button
+            isDragging = true;
+            startX = (e.type === 'mousedown') ? e.pageX : e.touches[0].pageX;
+            swipeBtn.style.transition = 'none';
+            swipeTrack.style.transition = 'none';
+        }
+
+        function handleMove(e) {
+            if (!isDragging) return;
+            // e.preventDefault(); // Optional: prevent scrolling while dragging
+
+            const currentX = (e.type === 'mousemove') ? e.pageX : e.touches[0].pageX;
+            const diff = currentX - startX;
+            
+            // Allow dragging only to right
+            if (diff > 0 && diff <= maxDistance) {
+                 swipeBtn.style.transform = `translateX(${diff}px)`;
+                 
+                 // Clip the track from the left as we drag
+                 // This ensures no track remains "behind" (left of) the button
+                 swipeTrack.style.clipPath = `inset(0 0 0 ${diff}px)`;
+            }
+        }
+
+        function handleEnd(e) {
+            if (!isDragging) return;
+            isDragging = false;
+             
+            // Calculate final position
+            const transformValue = swipeBtn.style.transform;
+            const match = transformValue.match(/translateX\(([-0-9.]+)px\)/);
+            const diff = match ? parseFloat(match[1]) : 0;
+            
+            if (diff > 100) { // Threshold to trigger
+                // Visual completion
+                swipeBtn.style.transition = 'all 0.3s ease';
+                swipeBtn.style.transform = `translateX(${250}px)`; // Fly off
+                
+                // Track completely disappears (or clip full)
+                swipeTrack.style.transition = 'opacity 0.3s ease';
+                swipeTrack.style.opacity = '0';
+                
+                setTimeout(() => {
+                    window.open('https://www.brynetapp.com/', '_blank');
+                    // Reset
+                    setTimeout(() => {
+                        swipeBtn.style.transition = 'none';
+                        swipeBtn.style.transform = 'translateX(0)';
+                        
+                        // Reset track
+                        swipeTrack.style.transition = 'none';
+                        swipeTrack.style.opacity = '1';
+                        swipeTrack.style.clipPath = 'inset(0 0 0 0)';
+                    }, 500);
+                }, 300);
+            } else {
+                // Reset position
+                swipeBtn.style.transition = 'all 0.3s ease';
+                swipeBtn.style.transform = 'translateX(0)';
+                
+                // Reset track clip
+                swipeTrack.style.transition = 'all 0.3s ease';
+                swipeTrack.style.clipPath = 'inset(0 0 0 0)';
+                swipeTrack.style.opacity = '1';
+            }
+        }
+
+        swipeBtn.addEventListener('mousedown', handleStart);
+        swipeBtn.addEventListener('touchstart', handleStart, { passive: true });
+
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('touchmove', handleMove, { passive: false });
+
+        document.addEventListener('mouseup', handleEnd);
+        document.addEventListener('touchend', handleEnd);
+        
+        // Prevent default click if dragged
+        swipeBtn.addEventListener('click', (e) => {
+             const transformValue = swipeBtn.style.transform;
+             if (transformValue && transformValue !== 'translateX(0px)') {
+                 e.preventDefault();
+             }
         });
     }
 });
