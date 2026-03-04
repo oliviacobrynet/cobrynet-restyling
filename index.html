@@ -14,6 +14,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Cobrynet - Partner Strategico per la Crescita</title>
     <link rel="icon" type="image/png" href="foto/favicon.png">
+    
+    <!-- Preload videos for faster playback -->
+    <link rel="preload" href="video/sfondo-video.mp4" as="video" type="video/mp4">
+    
     <link rel="stylesheet" href="styles.css?v=forceupdate3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -415,28 +419,36 @@
             
             <!-- MOBILE CAROUSEL SECTION -->
             <div style="position: relative; width: 100%; padding: 20px 0; margin-bottom: 100px; z-index: 10;">
-                <div id="mobile-marketplace-carousel" style="display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding: 0 20px; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%;">
+                <!-- ARROW CONTROLS -->
+                <div id="carousel-prev" style="position: absolute; left: 10px; top: 3054px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 200; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                    <img src="SVG/freccia.svg" style="width: 15px; transform: rotate(180deg); filter: brightness(0) invert(1);">
+                </div>
+                <div id="carousel-next" style="position: absolute; right: 10px; top: 3054px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 200; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                    <img src="SVG/freccia.svg" style="width: 15px; filter: brightness(0) invert(1);">
+                </div>
+
+                <div id="mobile-marketplace-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory; gap: 20px; padding: 0 20px; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%;">
                     <!-- Card 1 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
-                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Pacchetto</span><br/><span style="font-weight: 500;">Social Media</span></div>
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Pacchetto</span><br/><span style="font-weight: 500;">Social Media</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Servizio dedicato allo sviluppo di grafiche professionali pensate esclusivamente per i social media.</p>
                     </div>
                     <!-- Card 2 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
-                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Monopagina</span></div>
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Monopagina</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web one page progettato per presentare la tua attività in modo diretto ed efficace.</p>
                     </div>
                     <!-- Card 3 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 30px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-start; box-shadow: 0px 4px 25px rgba(82, 82, 82, 0.5) inset;">
-                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 15px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Multipagina</span></div>
+                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                        <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Multipagina</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web multipagina, professionale e completo, ideato per rappresentare al meglio la tua attività.</p>
                     </div>
                 </div>
                 <!-- Dots Navigation -->
-                <div id="mobile-marketplace-dots" style="display: flex; gap: 12px; justify-content: center; margin-top: 10px;">
-                    <span class="mobile-dot active" data-index="0" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
-                    <span class="mobile-dot" data-index="1" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
-                    <span class="mobile-dot" data-index="2" style="width: 10px; height: 10px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                <div id="mobile-marketplace-dots" style="display: flex; gap: 12px; justify-content: center; margin-top: -15px; position: relative; z-index: 10;">
+                    <span class="mobile-dot active" data-index="0" style="width: 6px; height: 6px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                    <span class="mobile-dot" data-index="1" style="width: 6px; height: 6px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
+                    <span class="mobile-dot" data-index="2" style="width: 6px; height: 6px; border-radius: 50%; background: white; border: none; cursor: pointer; transition: all 0.3s ease;"></span>
                 </div>
             </div>
             <!-- END MOBILE CAROUSEL SECTION -->
@@ -456,17 +468,10 @@
             <div style="width: 240px; height: 30px; left: 77px; top: 1434px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Outfit; font-weight: 400; line-height: 36.38px; word-wrap: break-word">Agenzia attiva</div>
             <div style="width: 240px; height: 98px; left: 77px; top: 1457px; position: absolute; text-align: center; font-size: 96px; font-family: Outfit; font-weight: 100; line-height: 116.42px; word-wrap: break-word; background: linear-gradient(135deg, #EC6C25 0%, #EC6C25 10%, black 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text">24/7</div>
             <div style="width: 265px; height: 76px; left: 64px; top: 1569px; position: absolute; text-align: center; color: black; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word">Brynet funziona come una vera agenzia attiva, come avere un team creativo sempre al tuo fianco</div>
-            <div style="width: 343px; height: 300px; left: 25px; top: 1672px; position: absolute; background: #525252; border-radius: 15px; overflow: hidden;">
-                <video autoplay loop muted playsinline webkit-playsinline preload="auto" style="width: 110%; height: 110%; object-fit: cover; object-position: left center; position: absolute; top: 0; left: 0;">
-                    <source src="video/sfumatura-hero.mp4" type="video/mp4">
-                </video>
-                <!-- Dark overlay for text readability -->
-                <div style="position: absolute; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-                <!-- Texts on top of video -->
-                <div style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3;">
-                    <div style="width: 343px; height: 72px; text-align: center; color: white; font-size: 40px; font-family: Outfit; font-weight: 400; line-height: 42.80px; word-wrap: break-word;">Consulente<br/>dedicato</div>
-                    <div style="width: 263px; height: 53px; text-align: center; color: white; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word; margin-top: 25px;">Ogni cliente ha accesso a un consulente marketing dedicato integrato, direttamente dentro Brynet</div>
-                </div>
+            <div id="consultant-container" style="width: 343px; height: 300px; left: 25px; top: 1672px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3;">
+                <div id="consultant-circle" style="width: 320px; height: 320px; background: transparent; border: 1.5px solid white; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 1s ease-out; animation: spin-pulse 4s ease-in-out infinite; z-index: -1; pointer-events: none;"></div>
+                <div style="width: 343px; height: 72px; text-align: center; color: white; font-size: 40px; font-family: Outfit; font-weight: 400; line-height: 42.80px; word-wrap: break-word;">Consulente<br/>dedicato</div>
+                <div style="width: 263px; height: 53px; text-align: center; color: white; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word; margin-top: 25px;">Ogni cliente ha accesso a un consulente marketing dedicato integrato, direttamente dentro Brynet</div>
             </div>
             <div style="width: 259px; height: 53px; left: 67px; top: 2186px; position: absolute; text-align: center; color: white; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word">Gestisci e pubblica contenuti su tutte le principali piattaforme da un'unica interfaccia</div>
             <div style="width: 343px; height: 125px; left: 25px; top: 2047px; position: absolute; text-align: center; color: white; font-size: 40px; font-family: Outfit; font-weight: 400; line-height: 39.20px; word-wrap: break-word">Pubblicazione<br/>multipiattaforma<br/>automatizzata</div>

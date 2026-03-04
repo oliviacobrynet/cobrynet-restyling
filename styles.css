@@ -2814,28 +2814,30 @@ body {
     #mobile-marketplace-carousel {
         position: absolute !important;
         left: 25px !important;
-        top: 2900px !important;
+        top: 2920px !important;
         width: calc(100% - 50px) !important;
         max-width: unset !important;
         padding: 0 !important;
         display: flex !important;
-        overflow-x: scroll !important;
+        overflow-x: hidden !important;
         overflow-y: hidden !important;
         gap: 20px !important;
-        -webkit-overflow-scrolling: touch !important;
-        scroll-snap-type: x mandatory !important;
-        scroll-behavior: smooth !important;
         border: none !important;
-        scroll-padding: 0 !important;
-        overscroll-behavior: contain !important;
-        touch-action: pan-x !important;
         height: auto !important;
-        pointer-events: auto !important;
         z-index: 100 !important;
-        user-select: none !important;
-        -webkit-user-select: none !important;
-        -moz-user-select: none !important;
-        -ms-user-select: none !important;
+        
+        /* Fix scrolling issues */
+        touch-action: pan-y !important;
+        pointer-events: none !important; /* Let scroll pass through gaps */
+        -webkit-overflow-scrolling: auto !important; /* Disable momentum scroll on container */
+    }
+    
+    #mobile-marketplace-carousel > div {
+        flex: 0 0 calc(100% - 40px);
+        scroll-snap-align: start;
+        min-width: calc(100% - 40px);
+        pointer-events: auto !important; /* Re-enable clicks on cards */
+        touch-action: pan-y !important; /* Explicitly allow vertical panning on cards */
     }
     
     #mobile-marketplace-carousel > div {
@@ -2852,7 +2854,7 @@ body {
         position: absolute !important;
         left: 0 !important;
         right: 0 !important;
-        top: 3150px !important;
+        top: 3180px !important;
         width: 100% !important;
         margin: 0 !important;
         z-index: 15 !important;
@@ -2961,4 +2963,23 @@ body {
 .donatello-container {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Animation for Consultant Circle */
+@keyframes spin-pulse {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) scale(0.9);
+        opacity: 0;
+        border-color: rgba(255, 255, 255, 0);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(180deg) scale(1.05);
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 1);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) scale(0.9);
+        opacity: 0;
+        border-color: rgba(255, 255, 255, 0);
+    }
 }

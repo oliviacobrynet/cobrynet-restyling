@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Consultant Circle Animation
+    const consultantContainer = document.getElementById('consultant-container');
+    const consultantCircle = document.getElementById('consultant-circle');
+
+    if (consultantContainer && consultantCircle) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    consultantCircle.style.opacity = '1';
+                } else {
+                    // Reset opacity when scrolling out if desired
+                    consultantCircle.style.opacity = '0';
+                }
+            });
+        }, { threshold: 0.2 }); // Trigger earlier (20% visible)
+
+        observer.observe(consultantContainer);
+    }
+
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
     
@@ -73,11 +92,56 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // MOBILE Marketplace Carousel - TOUCH SWIPE ENABLED
+    // MOBILE Marketplace Carousel - ARROWS & NON-SWIPE
     const mobileMarketplaceCarousel = document.getElementById('mobile-marketplace-carousel');
     const mobileMarketplaceDots = document.getElementById('mobile-marketplace-dots');
+    const carouselPrev = document.getElementById('carousel-prev');
+    const carouselNext = document.getElementById('carousel-next');
     
     if (mobileMarketplaceCarousel && mobileMarketplaceDots) {
+        
+        // Arrow Navigation
+        if (carouselPrev && carouselNext) {
+            const updateArrows = () => {
+                const scrollLeft = mobileMarketplaceCarousel.scrollLeft;
+                const scrollWidth = mobileMarketplaceCarousel.scrollWidth;
+                const clientWidth = mobileMarketplaceCarousel.clientWidth;
+                
+                // Hide Prev arrow if at start
+                if (scrollLeft <= 10) {
+                    carouselPrev.style.display = 'none';
+                } else {
+                    carouselPrev.style.display = 'flex';
+                }
+                
+                // Hide Next arrow if at end
+                if (scrollLeft + clientWidth >= scrollWidth - 10) {
+                    carouselNext.style.display = 'none';
+                } else {
+                    carouselNext.style.display = 'flex';
+                }
+            };
+
+            // Initial check
+            updateArrows();
+            
+            // Re-check on scroll
+            mobileMarketplaceCarousel.addEventListener('scroll', updateArrows);
+
+            carouselPrev.addEventListener('click', () => {
+                const cardWidth = mobileMarketplaceCarousel.offsetWidth;
+                mobileMarketplaceCarousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+                // We don't need to call updateArrows here because scroll event will fire
+            });
+            
+            carouselNext.addEventListener('click', () => {
+                const cardWidth = mobileMarketplaceCarousel.offsetWidth;
+                mobileMarketplaceCarousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+        }
+
+        // --- DISABLED TOUCH SWIPE AS REQUESTED ---
+        /*
         let startX = 0;
         let scrollLeft = 0;
         let isDown = false;
@@ -123,6 +187,8 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMarketplaceCarousel.addEventListener('touchend', () => {
             touchStartX = 0;
         }, { passive: true });
+        */
+        // -----------------------------------------
         
         // Update dots on scroll
         mobileMarketplaceCarousel.addEventListener('scroll', function() {
