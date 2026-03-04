@@ -2965,21 +2965,19 @@ body {
     transform: translateY(0);
 }
 
-/* Animation for Consultant Circle */
-@keyframes spin-pulse {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg) scale(0.9);
-        opacity: 0;
-        border-color: rgba(255, 255, 255, 0);
+/* Split animations to control speed separately */
+@keyframes spin-slow {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
     }
-    50% {
-        transform: translate(-50%, -50%) rotate(180deg) scale(1.05);
-        opacity: 1;
-        border-color: rgba(255, 255, 255, 1);
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg) scale(0.9);
-        opacity: 0;
-        border-color: rgba(255, 255, 255, 0);
-    }
+}
+
+@keyframes fade-hold-cycle {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; } 
+    100% { opacity: 0; }
 }

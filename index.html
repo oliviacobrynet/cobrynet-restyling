@@ -420,26 +420,26 @@
             <!-- MOBILE CAROUSEL SECTION -->
             <div style="position: relative; width: 100%; padding: 20px 0; margin-bottom: 100px; z-index: 10;">
                 <!-- ARROW CONTROLS -->
-                <div id="carousel-prev" style="position: absolute; left: 10px; top: 3054px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 200; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                <div id="carousel-prev" style="position: absolute; left: 10px; top: 3040px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
                     <img src="SVG/freccia.svg" style="width: 15px; transform: rotate(180deg); filter: brightness(0) invert(1);">
                 </div>
-                <div id="carousel-next" style="position: absolute; right: 10px; top: 3054px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 200; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
+                <div id="carousel-next" style="position: absolute; right: 10px; top: 3040px; transform: translateY(-50%); width: 40px; height: 40px; background: rgba(0,0,0,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2);">
                     <img src="SVG/freccia.svg" style="width: 15px; filter: brightness(0) invert(1);">
                 </div>
 
-                <div id="mobile-marketplace-carousel" style="display: flex; overflow-x: hidden; scroll-snap-type: x mandatory; gap: 20px; padding: 0 20px; -webkit-overflow-scrolling: touch; width: 100%; max-width: 100%;">
+                <div id="mobile-marketplace-carousel" style="display: flex; overflow-x: hidden; gap: 20px; padding: 0 20px; width: 100%; max-width: 100%;">
                     <!-- Card 1 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                    <div class="carousel-card" style="flex: 0 0 calc(100% - 40px); background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
                         <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Pacchetto</span><br/><span style="font-weight: 500;">Social Media</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Servizio dedicato allo sviluppo di grafiche professionali pensate esclusivamente per i social media.</p>
                     </div>
                     <!-- Card 2 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                    <div class="carousel-card" style="flex: 0 0 calc(100% - 40px); background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
                         <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Monopagina</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web one page progettato per presentare la tua attività in modo diretto ed efficace.</p>
                     </div>
                     <!-- Card 3 -->
-                    <div style="flex: 0 0 calc(100% - 40px); scroll-snap-align: start; background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
+                    <div class="carousel-card" style="flex: 0 0 calc(100% - 40px); background: black; border-radius: 20px; border: 0.5px solid #D9D9D9; padding: 25px 50px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 240px;">
                         <div style="color: white; font-size: 28px; font-family: Outfit; font-weight: 400; margin-bottom: 12px;"><span style="font-weight: 400;">Sito Web</span><br/><span style="font-weight: 500;">Multipagina</span></div>
                         <p style="color: white; font-size: 16px; font-family: Outfit; font-weight: 300; margin: 0;">Sviluppo di un sito web multipagina, professionale e completo, ideato per rappresentare al meglio la tua attività.</p>
                     </div>
@@ -469,7 +469,9 @@
             <div style="width: 240px; height: 98px; left: 77px; top: 1457px; position: absolute; text-align: center; font-size: 96px; font-family: Outfit; font-weight: 100; line-height: 116.42px; word-wrap: break-word; background: linear-gradient(135deg, #EC6C25 0%, #EC6C25 10%, black 60%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text">24/7</div>
             <div style="width: 265px; height: 76px; left: 64px; top: 1569px; position: absolute; text-align: center; color: black; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word">Brynet funziona come una vera agenzia attiva, come avere un team creativo sempre al tuo fianco</div>
             <div id="consultant-container" style="width: 343px; height: 300px; left: 25px; top: 1672px; position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 3;">
-                <div id="consultant-circle" style="width: 320px; height: 320px; background: transparent; border: 1.5px solid white; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 1s ease-out; animation: spin-pulse 4s ease-in-out infinite; z-index: -1; pointer-events: none;"></div>
+                <svg id="consultant-circle" width="320" height="320" viewBox="0 0 320 320" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; animation: spin-slow 30s linear infinite; z-index: -1; pointer-events: none;">
+                    <circle cx="160" cy="160" r="158" fill="none" stroke="white" stroke-width="3" stroke-dasharray="20 30" />
+                </svg>
                 <div style="width: 343px; height: 72px; text-align: center; color: white; font-size: 40px; font-family: Outfit; font-weight: 400; line-height: 42.80px; word-wrap: break-word;">Consulente<br/>dedicato</div>
                 <div style="width: 263px; height: 53px; text-align: center; color: white; font-size: 15px; font-family: Outfit; font-weight: 400; line-height: 18.19px; word-wrap: break-word; margin-top: 25px;">Ogni cliente ha accesso a un consulente marketing dedicato integrato, direttamente dentro Brynet</div>
             </div>
@@ -499,7 +501,7 @@
                 <img src="SVG/brynet.svg" alt="Brynet" style="height: 26px;">
                 <img src="SVG/freccia.svg" alt="Arrow" style="width: 23px; height: 17px;">
             </div>
-            <div class="donatello-container visible" style="width: 342px; height: 259px; left: 25px; top: 3772px; position: absolute; border-radius: 20px; background: #EC6C25; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 20px 50px 20px;">
+            <div id="mobile-donatello" class="donatello-container visible" style="width: 342px; height: 259px; left: 25px; top: 3772px; position: absolute; border-radius: 20px; background: transparent; border: 0.5px solid white; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; opacity: 0; transform: translateY(30px); transition: all 1s ease-out;">
                 <div style="text-align: center; color: white; font-size: 32px; font-family: Outfit; font-weight: 500; line-height: 38.04px; word-wrap: break-word; margin-bottom: 15px;">Donatello</div>
                 <div style="text-align: center; color: white; font-size: 16px; font-family: Outfit; font-weight: 300; line-height: 20px; word-wrap: break-word;"><span style="font-size: 20px; font-weight: 500;">Donatello è il tuo supporto virtuale</span><br/><br/>Ti aiuterà a creare la tua strategia, analizzerà le tue performance ed è sempre disponibile per rispondere a qualsiasi tua domanda</div>
             </div>

@@ -17,6 +17,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         observer.observe(consultantContainer);
     }
+    
+    // Donatello Container Animation (Mobile)
+    const mobileDonatello = document.getElementById('mobile-donatello');
+    if (mobileDonatello) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    mobileDonatello.style.opacity = '1';
+                    mobileDonatello.style.transform = 'translateY(0)';
+                    observer.unobserve(mobileDonatello); // Run only once
+                }
+            });
+        }, { threshold: 0.1 }); // More sensitive threshold
+        observer.observe(mobileDonatello);
+    }
+    
+    // Fallback if IntersectionObserver is not supported or fails
+    setTimeout(() => {
+        if(mobileDonatello && getComputedStyle(mobileDonatello).opacity === '0') {
+             mobileDonatello.style.opacity = '1';
+             mobileDonatello.style.transform = 'translateY(0)';
+        }
+    }, 4000); // Show anyway after 4s (safe fallback)
 
     const header = document.querySelector('.header');
     const headerLogo = document.querySelector('.logo img');
@@ -128,16 +151,57 @@ document.addEventListener('DOMContentLoaded', function() {
             // Re-check on scroll
             mobileMarketplaceCarousel.addEventListener('scroll', updateArrows);
 
-            carouselPrev.addEventListener('click', () => {
-                const cardWidth = mobileMarketplaceCarousel.offsetWidth;
-                mobileMarketplaceCarousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-                // We don't need to call updateArrows here because scroll event will fire
-            });
+            // Function to handle scroll interactions with robust index tracking
+            const scrollPrev = (e) => {
+                if(e.cancelable) e.preventDefault();
+                e.stopPropagation();
+                
+                const card = mobileMarketplaceCarousel.querySelector('div'); // Get first card
+                
+                if (card) {
+                    const cardWidth = card.offsetWidth;
+                    const gap = 20; // Gap size defined in CSS
+                    const stride = cardWidth + gap;
+                    
+                    const scrollLeft = mobileMarketplaceCarousel.scrollLeft;
+                    const currentIndex = Math.round(scrollLeft / stride);
+                    const prevIndex = Math.max(0, currentIndex - 1);
+                    
+                    mobileMarketplaceCarousel.scrollTo({
+                        left: prevIndex * stride,
+                        behavior: 'smooth'
+                    });
+                }
+            };
+
+            const scrollNext = (e) => {
+                if(e.cancelable) e.preventDefault();
+                e.stopPropagation();
+                
+                const card = mobileMarketplaceCarousel.querySelector('div'); // Get first card
+                
+                if (card) {
+                    const cardWidth = card.offsetWidth;
+                    const gap = 20; // Gap size defined in CSS
+                    const stride = cardWidth + gap;
+                    
+                    const scrollLeft = mobileMarketplaceCarousel.scrollLeft;
+                    const currentIndex = Math.round(scrollLeft / stride);
+                    const nextIndex = currentIndex + 1;
+                    
+                    mobileMarketplaceCarousel.scrollTo({
+                        left: nextIndex * stride,
+                        behavior: 'smooth'
+                    });
+                }
+            };
+
+            // Add Click and Touch listeners
+            carouselPrev.addEventListener('click', scrollPrev);
+            carouselPrev.addEventListener('touchstart', scrollPrev, { passive: false });
             
-            carouselNext.addEventListener('click', () => {
-                const cardWidth = mobileMarketplaceCarousel.offsetWidth;
-                mobileMarketplaceCarousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
-            });
+            carouselNext.addEventListener('click', scrollNext);
+            carouselNext.addEventListener('touchstart', scrollNext, { passive: false });
         }
 
         // --- DISABLED TOUCH SWIPE AS REQUESTED ---
